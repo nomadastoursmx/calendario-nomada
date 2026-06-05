@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nómadas Tours · Catálogo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#18140f;--cream:#f9f5ee;--warm:#ede8df;--border:#ddd5c5;--terra:#bf4e1a;--terra-l:#faeee6;--sage:#3a6b48;--sage-l:#eaf2ed;--ocean:#1a4f7a;--ocean-l:#e5eef6;--gold:#9a6c14;--gold-l:#fdf5e0;--muted:#7a7065;--r:14px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--cream);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.6;}
+/* HEADER */
+.hdr{background:var(--ink);color:#fff;padding:2.5rem 2rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terra),var(--gold),var(--sage),var(--ocean));}
+.hdr-brand{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;letter-spacing:-1px;line-height:1;}
+.hdr-brand em{color:#f5c842;font-style:normal;}
+.hdr-sub{font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.4rem;}
+.hdr-pills{display:flex;justify-content:center;gap:.5rem;margin-top:1.2rem;flex-wrap:wrap;}
+.hdr-pill{font-size:.7rem;padding:3px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);}
+/* TABS */
+.tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;}
+.tab{padding:.9rem 1.5rem;border:none;background:transparent;font-family:inherit;font-size:.85rem;font-weight:500;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.tab:hover{color:var(--ink);}
+.tab.on{color:var(--terra);border-bottom-color:var(--terra);}
+/* CONTROLS */
+.controls{background:#fff;border-bottom:1px solid var(--border);padding:.8rem 1.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+.ctrl-lbl{font-size:.72rem;color:var(--muted);white-space:nowrap;}
+.cbtn{padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink);font-size:.76rem;font-family:inherit;cursor:pointer;transition:all .18s;}
+.cbtn:hover,.cbtn.on{background:var(--terra);color:#fff;border-color:var(--terra);}
+.csearch{margin-left:auto;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--warm);color:var(--ink);font-size:.78rem;font-family:inherit;outline:none;width:180px;transition:border-color .2s;}
+.csearch:focus{border-color:var(--terra);}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--border);border-bottom:1px solid var(--border);}
+.stat{background:#fff;padding:.9rem 1rem;text-align:center;}
+.stat-n{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--terra);line-height:1;}
+.stat-l{font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-top:2px;}
+/* MAIN */
+.main{max-width:1120px;margin:0 auto;padding:1.5rem 1.5rem 5rem;}
+.tab-panel{display:none;}
+.tab-panel.on{display:block;}
+/* Month header */
+.mhdr{display:flex;align-items:center;gap:1rem;margin:2rem 0 1rem;}
+.mhdr h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;white-space:nowrap;}
+.mhdr .mline{flex:1;height:1px;background:var(--border);}
+.mclimate{font-size:.72rem;color:var(--muted);display:flex;gap:.4rem;flex-wrap:wrap;}
+.mbadge{padding:2px 9px;border-radius:20px;font-size:.66rem;font-weight:500;}
+.mb-ok{background:var(--sage-l);color:var(--sage);}
+.mb-warn{background:var(--gold-l);color:var(--gold);}
+.mb-rain{background:var(--ocean-l);color:var(--ocean);}
+/* Card grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1rem;}
+/* Card */
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.08);}
+.card.hidden{display:none!important;}
+.card-stripe{height:4px;}
+.s-local{background:linear-gradient(90deg,var(--sage),#7fc49a);}
+.s-nac{background:linear-gradient(90deg,var(--terra),#f0814a);}
+.s-inter{background:linear-gradient(90deg,var(--ocean),#5da0d0);}
+.card-head{padding:1rem 1.1rem .6rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;}
+.card-dest{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;line-height:1.3;flex:1;}
+.card-price{text-align:right;flex-shrink:0;}
+.price-main{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--terra);line-height:1;}
+.price-old{font-size:.65rem;color:var(--muted);text-decoration:line-through;}
+.price-save{font-size:.62rem;color:var(--sage);font-weight:600;}
+.card-meta{padding:0 1.1rem .5rem;display:flex;gap:.8rem;font-size:.72rem;color:var(--muted);}
+.card-tags{padding:0 1.1rem .7rem;display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-size:.62rem;padding:2px 9px;border-radius:20px;font-weight:500;}
+.t-local{background:var(--sage-l);color:var(--sage);}
+.t-nac{background:var(--terra-l);color:var(--terra);}
+.t-inter{background:var(--ocean-l);color:var(--ocean);}
+.t-eco{background:#edfce8;color:#1a7a2a;}
+.t-hot{background:#fff2f0;color:#c0392b;}
+.t-nota{background:#fff8e0;color:#7a5c00;}
+/* Accordion */
+.acc{border-top:1px solid var(--border);}
+.acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.55rem 1.1rem;background:transparent;border:none;color:var(--muted);font-size:.73rem;font-family:inherit;cursor:pointer;font-weight:500;transition:color .2s;}
+.acc-btn:hover{color:var(--ink);}
+.chev{transition:transform .22s;font-size:.6rem;}
+.acc-btn.open .chev{transform:rotate(180deg);}
+.acc-body{display:none;padding:0 1.1rem .8rem;}
+.acc-body.open{display:block;}
+/* IG box */
+.ig-box{background:#fafafa;border:1px solid var(--border);border-radius:8px;padding:.8rem;font-size:.78rem;line-height:1.75;white-space:pre-wrap;position:relative;}
+.ig-copy{position:absolute;top:.4rem;right:.4rem;padding:2px 9px;border-radius:20px;background:var(--terra);color:#fff;border:none;font-size:.62rem;cursor:pointer;}
+/* Itinerary */
+.itinerary{list-style:none;font-size:.78rem;}
+.itinerary li{display:flex;gap:.6rem;padding:.3rem 0;border-bottom:1px dotted var(--border);}
+.itinerary li:last-child{border:none;}
+.it-t{color:var(--terra);font-weight:600;white-space:nowrap;min-width:50px;}
+.it-x{color:#333;line-height:1.5;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;font-size:.76rem;}
+.inc-section h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:.3rem;}
+.inc-list,.rec-list{list-style:none;}
+.inc-list li{padding:2px 0;display:flex;gap:4px;color:#333;}
+.inc-list li::before{content:'✓';color:var(--sage);font-weight:700;flex-shrink:0;}
+.exc-list li::before{content:'✗';color:var(--terra)!important;}
+.rec-list li{padding:2px 0;display:flex;gap:4px;color:#333;}
+.rec-list li::before{content:'💡';flex-shrink:0;}
+/* Card footer */
+.card-foot{padding:.55rem 1.1rem;background:var(--warm);display:flex;align-items:center;justify-content:space-between;font-size:.68rem;margin-top:auto;}
+.cf-comp{color:var(--muted);}
+.cf-trend{font-weight:600;}
+.tr-hot{color:var(--terra);}
+.tr-up{color:var(--sage);}
+/* Edit buttons on card */
+.card-edit-btns{padding:.4rem 1.1rem;display:flex;gap:.4rem;border-top:1px solid var(--border);}
+.edit-btn{padding:3px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;font-size:.68rem;font-family:inherit;cursor:pointer;transition:all .15s;}
+.edit-btn.del{color:#c0392b;border-color:#f5c6c0;}
+.edit-btn.del:hover{background:#c0392b;color:#fff;}
+.edit-btn.edit{color:var(--ocean);border-color:#b5ccdf;}
+.edit-btn.edit:hover{background:var(--ocean);color:#fff;}
+/* ══ COMPETITION SECTION ══ */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+.comp-agency{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.comp-head{padding:1rem 1.2rem .7rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem;}
+.comp-logo{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:#fff;flex-shrink:0;}
+.comp-name{font-weight:700;font-size:.9rem;}
+.comp-handle{font-size:.72rem;color:var(--muted);}
+.comp-tours{padding:.7rem 1.2rem;}
+.comp-tour-row{display:flex;justify-content:space-between;align-items:center;padding:.3rem 0;border-bottom:1px dotted var(--border);font-size:.78rem;}
+.comp-tour-row:last-child{border:none;}
+.comp-tour-name{flex:1;color:#333;}
+.comp-tour-price{font-weight:600;color:var(--terra);white-space:nowrap;margin-left:.5rem;}
+.comp-tour-date{font-size:.68rem;color:var(--muted);white-space:nowrap;margin-left:.4rem;}
+/* ══ EDITOR ══ */
+.editor-panel{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem;}
+.editor-panel h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem;color:var(--ink);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.form-grid.three{grid-template-columns:1fr 1fr 1fr;}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-group label{font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.form-group input,.form-group select,.form-group textarea{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.82rem;color:var(--ink);background:var(--warm);outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--terra);}
+.form-group textarea{resize:vertical;min-height:80px;}
+.form-full{grid-column:1/-1;}
+.btn-add{padding:10px 24px;border-radius:30px;border:none;background:var(--terra);color:#fff;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.btn-add:hover{opacity:.85;}
+.btn-secondary{padding:10px 24px;border-radius:30px;border:1.5px solid var(--border);background:transparent;color:var(--ink);font-family:inherit;font-size:.85rem;cursor:pointer;margin-left:.5rem;}
+/* Export */
+.export-row{display:flex;justify-content:flex-end;gap:.6rem;margin-bottom:1.2rem;flex-wrap:wrap;}
+.ebtn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--ink);font-size:.78rem;font-family:inherit;cursor:pointer;transition:all .2s;}
+.ebtn:hover{border-color:var(--terra);color:var(--terra);}
+.ebtn.pri{background:var(--terra);color:#fff;border-color:var(--terra);}
+/* modal removed */
+/* Toast */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--ink);color:#fff;padding:8px 18px;border-radius:30px;font-size:.8rem;z-index:999;opacity:0;transform:translateY(20px);transition:all .3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+/* Footer */
+footer{text-align:center;padding:1.5rem;font-size:.7rem;color:var(--muted);border-top:1px solid var(--border);}
+@media(max-width:600px){.hdr-brand{font-size:2rem;}.controls{padding:.6rem .8rem;}.csearch{width:120px;}.main{padding:1rem .8rem 3rem;}.two-col{grid-template-columns:1fr;}.grid{grid-template-columns:1fr;}.form-grid,.form-grid.three{grid-template-columns:1fr;}}
+/* Share full info button */
+.btn-share-full{width:100%;padding:.55rem 1.1rem;background:var(--ink);color:#fff;border:none;font-family:inherit;font-size:.73rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .2s;}
+.btn-share-full:hover{opacity:.82;}
+/* AI copy generator */
+.ai-gen-wrap{margin-top:.6rem;}
+.ai-key-row{display:flex;gap:.4rem;margin-bottom:.5rem;}
+.ai-key-input{flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:8px;font-size:.75rem;font-family:inherit;background:var(--warm);color:var(--ink);outline:none;}
+.ai-key-input:focus{border-color:var(--terra);}
+.ai-gen-btn{padding:6px 14px;border-radius:20px;border:none;background:linear-gradient(135deg,#4285f4,#34a853);color:#fff;font-size:.72rem;font-family:inherit;cursor:pointer;white-space:nowrap;transition:opacity .2s;}
+.ai-gen-btn:hover{opacity:.85;}
+.ai-gen-btn:disabled{opacity:.5;cursor:wait;}
+.ai-variants{display:flex;flex-direction:column;gap:.5rem;margin-top:.4rem;}
+.ai-variant{background:#f0f7ff;border:1px solid #b5ccdf;border-radius:8px;padding:.7rem;font-size:.76rem;line-height:1.7;white-space:pre-wrap;position:relative;}
+.ai-variant-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ocean);margin-bottom:.3rem;}
+.ai-copy-v{position:absolute;top:.4rem;right:.4rem;padding:2px 8px;border-radius:20px;background:var(--ocean);color:#fff;border:none;font-size:.6rem;cursor:pointer;}
+.ai-error{font-size:.75rem;color:var(--terra);padding:.4rem 0;}
+/* Add-to-month button */
+.add-to-month-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;border:1.5px dashed var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.76rem;cursor:pointer;transition:all .2s;margin-top:.8rem;}
+.add-to-month-btn:hover{border-color:var(--terra);color:var(--terra);background:var(--terra-l);}
+/* Month select in controls */
+.month-select-wrap{display:flex;align-items:center;gap:.4rem;}
+@media print{.controls,.export-row,.card-edit-btns,.tabs,.btn-share-full,.add-to-month-btn{display:none!important;}.card:hover{transform:none;box-shadow:none;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-brand">Nómadas <em>Tours</em></div>
+  <div class="hdr-sub">Catálogo Completo 2026 · Tuxtla Gutiérrez, Chiapas</div>
+  <div class="hdr-pills">
+    <span class="hdr-pill">📍 Sale desde Tuxtla</span>
+    <span class="hdr-pill">📱 Copy Instagram incluido</span>
+    <span class="hdr-pill">🗺️ Itinerario hora por hora</span>
+    <span class="hdr-pill">✏️ Editor de viajes</span>
+    <span class="hdr-pill">🏆 Análisis vs. competencia</span>
+  </div>
+</header>
+
+
+<div style="background:var(--ink);color:#fff;padding:.5rem 1.5rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:.75rem;" id="persistBar">
+  <span id="persistStatus">💾 Sin guardar aún</span>
+  <div style="margin-left:auto;display:flex;gap:.5rem;flex-wrap:wrap;">
+    <button onclick="saveToStorage();saveBiblioteca();updatePersistStatus();toast('💾 Todo guardado');" style="padding:4px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#4ade80;font-size:.72rem;font-family:inherit;cursor:pointer;">💾 Guardar todo</button>
+    <button onclick="exportSession()" style="padding:4px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-size:.72rem;font-family:inherit;cursor:pointer;">📥 Exportar .json</button>
+    <button onclick="document.getElementById('importFile').click()" style="padding:4px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fbbf24;font-size:.72rem;font-family:inherit;cursor:pointer;">📂 Importar .json</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importSession(this)">
+  </div>
+</div>
+<div class="tabs" id="tabBar">
+  <button class="tab on" onclick="switchTab('catalogo',this)">📋 Catálogo</button>
+  <button class="tab" onclick="switchTab('biblioteca',this)">📚 Biblioteca</button>
+  <button class="tab" onclick="switchTab('editor',this)">✏️ Agregar / Editar</button>
+  <button class="tab" onclick="switchTab('competencia',this)">🏆 Competencia</button>
+</div>
+
+<!-- ════ CATÁLOGO ════ -->
+<div class="tab-panel on" id="panel-catalogo">
+  <div class="controls">
+    <span class="ctrl-lbl">Mes:</span>
+    <button class="cbtn on" onclick="fMes('todos',this)">Todos</button>
+    <button class="cbtn" onclick="fMes('mayo',this)">Mayo</button>
+    <button class="cbtn" onclick="fMes('junio',this)">Junio</button>
+    <button class="cbtn" onclick="fMes('julio',this)">Julio</button>
+    <button class="cbtn" onclick="fMes('agosto',this)">Agosto</button>
+    <button class="cbtn" onclick="fMes('septiembre',this)">Sep</button>
+    <button class="cbtn" onclick="fMes('octubre',this)">Oct</button>
+    <button class="cbtn" onclick="fMes('noviembre',this)">Nov</button>
+    <button class="cbtn" onclick="fMes('diciembre',this)">Dic</button>
+    <span class="ctrl-lbl" style="margin-left:.5rem">Tipo:</span>
+    <button class="cbtn" onclick="fAlc('local',this)">🌿 Chiapas</button>
+    <button class="cbtn" onclick="fAlc('nacional',this)">🇲🇽 Nacional</button>
+    <button class="cbtn" onclick="fAlc('internacional',this)">✈️ Inter.</button>
+    <input class="csearch" placeholder="🔍 Buscar…" oninput="fSearch(this.value)">
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n" id="sTotal">0</div><div class="stat-l">destinos</div></div>
+    <div class="stat"><div class="stat-n" id="sMin">—</div><div class="stat-l">precio mín.</div></div>
+    <div class="stat"><div class="stat-n" id="sMax">—</div><div class="stat-l">precio máx.</div></div>
+    <div class="stat"><div class="stat-n" id="sLocal">0</div><div class="stat-l">en Chiapas</div></div>
+    <div class="stat"><div class="stat-n">−8%</div><div class="stat-l">vs. mercado</div></div>
+  </div>
+  <div class="main">
+    <div class="export-row">
+      <button class="ebtn" onclick="expCSV()">📊 CSV</button>
+      <button class="ebtn" onclick="window.print()">🖨️ Imprimir</button>
+      <button class="ebtn pri" onclick="expJSON()">📥 JSON</button>
+    </div>
+    <div id="cat-mayo">
+      <div class="mhdr"><h2>Mayo 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-ok">☀️ Mayormente seco</span><span class="mbadge mb-warn">⚡ Tardes lluviosas fin de mes</span></div></div>
+      <div class="grid" id="grid-mayo"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('mayo')">➕ Agregar viaje a Mayo</button>
+    </div>
+    <div id="cat-junio">
+      <div class="mhdr"><h2>Junio 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-rain">🌧️ Lluvia intensa en Chiapas</span><span class="mbadge mb-ok">✅ Priorizar fuera del estado</span></div></div>
+      <div class="grid" id="grid-junio"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('junio')">➕ Agregar viaje a Junio</button>
+    </div>
+    <div id="cat-julio">
+      <div class="mhdr"><h2>Julio 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-warn">🌦️ 20 días lluvia/mes</span><span class="mbadge mb-ok">✅ Selva y costas: perfectas</span></div></div>
+      <div class="grid" id="grid-julio"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('julio')">➕ Agregar viaje a Julio</button>
+    </div>
+    <div id="cat-agosto">
+      <div class="mhdr"><h2>Agosto 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-rain">🌧️ Pico de lluvias</span><span class="mbadge mb-ok">✅ Playas y destinos nacionales</span></div></div>
+      <div class="grid" id="grid-agosto"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('agosto')">➕ Agregar viaje a Agosto</button>
+    </div>
+    <div id="cat-septiembre" style="display:none">
+      <div class="mhdr"><h2>Septiembre 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-rain">🌧️ Temporada de huracanes · Lluvias fuertes</span><span class="mbadge mb-ok">✅ Interior del país y destinos secos</span></div></div>
+      <div class="grid" id="grid-septiembre"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('septiembre')">➕ Agregar viaje a Septiembre</button>
+    </div>
+    <div id="cat-octubre" style="display:none">
+      <div class="mhdr"><h2>Octubre 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-warn">🌦️ Disminuyen las lluvias · Buen clima emergente</span><span class="mbadge mb-ok">✅ Temporada ideal para playas del Pacífico</span></div></div>
+      <div class="grid" id="grid-octubre"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('octubre')">➕ Agregar viaje a Octubre</button>
+    </div>
+    <div id="cat-noviembre" style="display:none">
+      <div class="mhdr"><h2>Noviembre 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-ok">☀️ Inicio temporada seca · Excelente clima</span><span class="mbadge mb-ok">✅ Ideal para Chiapas y destinos culturales</span></div></div>
+      <div class="grid" id="grid-noviembre"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('noviembre')">➕ Agregar viaje a Noviembre</button>
+    </div>
+    <div id="cat-diciembre" style="display:none">
+      <div class="mhdr"><h2>Diciembre 2026</h2><div class="mline"></div><div class="mclimate"><span class="mbadge mb-ok">☀️ Temporada seca · Alta demanda vacacional</span><span class="mbadge mb-warn">⚠️ Precios altos en hospedaje · Reservar con tiempo</span></div></div>
+      <div class="grid" id="grid-diciembre"></div>
+      <button class="add-to-month-btn" onclick="quickAddToMonth('diciembre')">➕ Agregar viaje a Diciembre</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════ BIBLIOTECA ════ -->
+<div class="tab-panel" id="panel-biblioteca">
+  <div class="main">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem;">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;">📚 Biblioteca de Viajes</h2>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:.2rem;">Inventario maestro. Guarda todos tus viajes aquí y úsalos para crear entradas en el calendario.</p>
+      </div>
+      <button class="btn-sm pri" onclick="newBibViajeForm()" style="font-size:.82rem;padding:9px 20px;">➕ Nuevo viaje</button>
+    </div>
+    <input class="bib-search" id="bibSearch" placeholder="🔍 Buscar por destino, tipo…" oninput="renderBiblioteca()">
+    <div class="bib-toolbar">
+      <button class="cbtn on" id="bibAll" onclick="bibFilter('todos',this)">Todos</button>
+      <button class="cbtn" onclick="bibFilter('local',this)">🌿 Chiapas</button>
+      <button class="cbtn" onclick="bibFilter('nacional',this)">🇲🇽 Nacional</button>
+      <button class="cbtn" onclick="bibFilter('internacional',this)">✈️ Internacional</button>
+      <span class="bib-count" id="bibCount"></span>
+    </div>
+    <div class="biblioteca-grid" id="bibliotecaGrid"></div>
+  </div>
+</div>
+<!-- ════ EDITOR ════ -->
+<div class="tab-panel" id="panel-editor">
+  <div class="main">
+    <div class="editor-panel">
+      <h3 id="editorTitle">➕ Agregar nuevo viaje</h3>
+      <input type="hidden" id="bibSaveMode" value="biblioteca">
+      <!-- Mode Banner + Toggle -->
+      <div id="editorModeBanner" style="background:var(--sage-l);border:1.5px solid var(--sage);border-radius:10px;padding:.7rem 1rem;margin-bottom:.5rem;font-size:.78rem;line-height:1.5;">
+        📚 <strong>Modo Biblioteca</strong> — El viaje se guardará en tu inventario maestro.
+      </div>
+      <div style="display:flex;gap:.5rem;margin-bottom:.8rem;flex-wrap:wrap;">
+        <button class="btn-sm" style="background:var(--sage);color:#fff;" onclick="document.getElementById('bibSaveMode').value='biblioteca';updateEditorModeUI()">📚 Guardar en Biblioteca</button>
+        <button class="btn-sm sec" onclick="document.getElementById('bibSaveMode').value='calendario';updateEditorModeUI()">📅 Agregar al Calendario</button>
+      </div>
+      <!-- Load from Biblioteca -->
+      <div style="background:linear-gradient(135deg,var(--sage-l),var(--ocean-l));border:1px solid var(--border);border-radius:var(--r);padding:.8rem 1rem;margin-bottom:.8rem;">
+        <div style="font-size:.78rem;font-weight:600;margin-bottom:.4rem;">📚 Cargar desde Biblioteca (opcional)</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
+          <select id="bibSelectDrop" onchange="loadFromBibSelect(this.value)" style="flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:.8rem;font-family:inherit;background:#fff;">
+            <option value="">— Seleccionar viaje de la biblioteca —</option>
+          </select>
+          <button class="btn-sm sec" onclick="clearBibSelect()" style="font-size:.72rem;">✕ Vacío</button>
+        </div>
+        <div style="font-size:.68rem;color:var(--muted);margin-top:.3rem;">Selecciona un viaje para llenar el formulario automáticamente.</div>
+      </div>
+      <!-- Gemini API Key + Auto Generator -->
+      <div style="background:var(--ocean-l);border:1px solid #b5ccdf;border-radius:10px;padding:.8rem 1rem;margin-bottom:1rem;">
+        <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:.7rem;">
+          <span style="font-size:.8rem;font-weight:600;color:var(--ocean);">🤖 Gemini AI — API Key</span>
+          <input id="geminiKey" type="password" class="ai-key-input" placeholder="AIzaSy… — pega tu key de Google AI Studio" style="flex:1;min-width:200px;" value="">
+          <button onclick="saveGeminiKey()" style="padding:5px 14px;border-radius:20px;border:none;background:var(--ocean);color:#fff;font-size:.72rem;font-family:inherit;cursor:pointer;">Guardar</button>
+          <span style="font-size:.7rem;color:var(--ocean);" id="geminiStatus"></span>
+        </div>
+        <!-- AUTO TRIP GENERATOR -->
+        <div style="border-top:1px solid #b5ccdf;padding-top:.7rem;">
+          <div style="font-size:.78rem;font-weight:600;color:var(--ocean);margin-bottom:.5rem;">✨ Generador automático de viajes con IA</div>
+          <div style="font-size:.72rem;color:var(--muted);margin-bottom:.6rem;">Escribe el nombre del destino (ej: "Cascadas Roberto Barrios", "Holbox", "Antigua Guatemala") y la IA investigará y llenará todo el formulario automáticamente.</div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:flex-end;">
+            <div style="flex:1;min-width:200px;">
+              <input id="autoDestName" class="ai-key-input" style="width:100%;font-size:.82rem;" placeholder="Nombre del destino o destinos (ej: Cascadas Roberto Barrios, Chiapas)">
+            </div>
+            <div>
+              <select id="fAlcanceAuto" style="padding:7px 10px;border:1px solid #b5ccdf;border-radius:8px;font-size:.78rem;font-family:inherit;background:#fff;color:var(--ink);">
+                <option value="local">🌿 Chiapas</option>
+                <option value="nacional">🇲🇽 Nacional</option>
+                <option value="internacional">✈️ Internacional</option>
+              </select>
+            </div>
+            <button id="autoGenBtn" onclick="generateTripFromNameFull()" style="padding:8px 18px;border-radius:20px;border:none;background:linear-gradient(135deg,#4285f4,#34a853);color:#fff;font-size:.78rem;font-family:inherit;font-weight:600;cursor:pointer;white-space:nowrap;">🔍 Generar viaje automático</button>
+          </div>
+          <div id="autoGenStatus" style="font-size:.75rem;color:var(--muted);margin-top:.4rem;"></div>
+          <div id="autoGenPreview"></div>
+        </div>
+      </div>
+      <input type="hidden" id="editId" value="">
+      <div class="form-grid">
+        <div class="form-group"><label>Destino *</label><input id="fDest" placeholder="Ej: Cañón del Sumidero"></div>
+        <div class="form-group"><label>Mes *</label>
+          <select id="fMes"><option value="mayo">Mayo</option><option value="junio">Junio</option><option value="julio">Julio</option><option value="agosto">Agosto</option><option value="septiembre">Septiembre</option><option value="octubre">Octubre</option><option value="noviembre">Noviembre</option><option value="diciembre">Diciembre</option></select>
+        </div>
+        <div class="form-group"><label>Fechas</label><input id="fFechas" placeholder="Ej: 15-16 julio"></div>
+        <div class="form-group"><label>Duración</label><input id="fDur" placeholder="Ej: 2 días / 1 noche"></div>
+        <div class="form-group"><label>Precio Nómadas ($) *</label><input id="fPrecio" type="number" placeholder="1200"></div>
+        <div class="form-group"><label>Precio competencia ($)</label><input id="fComp" type="number" placeholder="1400"></div>
+        <div class="form-group"><label>Alcance</label>
+          <select id="fAlcance"><option value="local">🌿 Chiapas (local)</option><option value="nacional">🇲🇽 Nacional</option><option value="internacional">✈️ Internacional</option></select>
+        </div>
+        <div class="form-group"><label>Tendencia</label><input id="fTrend" placeholder="Ej: 🔥 Alta demanda"></div>
+      </div>
+      <div class="form-grid" style="margin-top:.8rem">
+        <div class="form-group form-full"><label>Copy para Instagram</label><textarea id="fIG" rows="6" placeholder="✍️ Escribe aquí el texto para Instagram..."></textarea></div>
+        <div class="form-group form-full"><label>Itinerario (una parada por línea, formato: HH:MM am — Descripción)</label><textarea id="fItinerario" rows="6" placeholder="6:00 am — Salida desde Tuxtla&#10;8:30 am — Llegada al destino&#10;..."></textarea></div>
+        <div class="form-group"><label>¿Qué incluye? (una por línea)</label><textarea id="fIncluye" rows="5" placeholder="Transporte A/C&#10;Guía certificado&#10;Seguro"></textarea></div>
+        <div class="form-group"><label>¿Qué NO incluye?</label><textarea id="fNoIncluye" rows="5" placeholder="Alimentación&#10;Propinas"></textarea></div>
+        <div class="form-group form-full"><label>Recomendaciones (una por línea)</label><textarea id="fRecs" rows="4" placeholder="Llevar bloqueador solar&#10;Ropa cómoda"></textarea></div>
+      </div>
+      <div style="margin-top:1rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn-add" id="editorSaveBtn" onclick="saveViaje()">💾 Guardar viaje</button>
+        <button class="btn-secondary" onclick="clearForm()">✕ Cancelar</button>
+        <span style="font-size:.75rem;color:var(--muted);margin-left:.5rem">* campos requeridos</span>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem;">📋 Viajes actuales (<span id="editCount">0</span>)</h3>
+    <div id="editorList"></div>
+  </div>
+</div>
+
+<!-- ════ COMPETENCIA ════ -->
+<div class="tab-panel" id="panel-competencia">
+  <div class="main">
+    <!-- Editor de agencias -->
+    <div class="comp-editor">
+      <h3>➕ Agregar / editar agencia</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.8rem;">
+        <div class="form-group"><label>Agencia existente</label>
+          <select id="compAgencySelect" onchange="loadCompAgency(this.value)">
+            <option value="">— Nueva agencia —</option>
+          </select></div>
+        <div class="form-group"><label>Nombre *</label><input id="compName" placeholder="Ej: Hippies Travel Chiapas"></div>
+        <div class="form-group"><label>Handle / Instagram</label><input id="compHandle" placeholder="@agencia"></div>
+        <div class="form-group"><label>Contacto</label><input id="compContact" placeholder="961 000 0000"></div>
+        <div class="form-group"><label>Color</label><input id="compColor" type="color" value="#e74c3c" style="height:38px;border-radius:8px;cursor:pointer;width:100%;"></div>
+        <div class="form-group"><label>Emoji</label><input id="compEmoji" placeholder="🌿" maxlength="4"></div>
+      </div>
+      <div style="font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.4rem;">Tours</div>
+      <div id="compToursEditor"></div>
+      <button class="btn-sm sec" onclick="addCompTourRow()" style="margin-top:.4rem;font-size:.75rem;">+ Tour</button>
+      <div class="comp-actions">
+        <button class="btn-sm pri" onclick="saveCompAgency()">💾 Guardar agencia</button>
+        <button class="btn-sm sec" onclick="clearCompForm()">✕ Limpiar</button>
+        <button class="btn-sm sec" id="delCompBtn" onclick="deleteCompAgency()" style="display:none;color:#dc2626;border-color:#fca5a5;">🗑️ Eliminar</button>
+      </div>
+    </div>
+    <!-- Import Excel -->
+    <div style="background:var(--gold-l);border:1px solid #e0c870;border-radius:10px;padding:.8rem 1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;">
+      <div style="flex:1;">
+        <div style="font-size:.8rem;font-weight:600;color:var(--gold);margin-bottom:.2rem;">📥 Importar desde Excel</div>
+        <div style="font-size:.7rem;color:#7a6010;">Solo agrega datos nuevos, no borra los existentes.</div>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn-sm sec" onclick="downloadCompTemplate()" style="border-color:#b07d2a;color:#b07d2a;font-size:.72rem;">⬇️ Descargar plantilla</button>
+        <button class="btn-sm" style="background:#b07d2a;color:#fff;font-size:.72rem;" onclick="document.getElementById('compExcelFile').click()">📂 Importar .xlsx</button>
+        <input type="file" id="compExcelFile" accept=".xlsx,.xls" style="display:none" onchange="importCompExcel(this)">
+      </div>
+    </div>
+    <!-- Export row -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
+      <p style="font-size:.8rem;color:var(--muted);">Agencias registradas en Chiapas 2026</p>
+      <div style="display:flex;gap:.5rem;">
+        <button class="btn-excel" onclick="exportCompExcel()" style="font-size:.75rem;padding:7px 14px;">📊 Excel</button>
+        <button class="ebtn" onclick="exportCompCSV()" style="font-size:.75rem;">📄 CSV</button>
+      </div>
+    </div>
+    <div class="comp-grid" id="compGrid"></div>
+  </div>
+</div>
+
+<footer>Nómadas Tours · Catálogo 2026 · Precios en MXN por persona · Incluye transporte y guía certificado<br>
+Fuentes: Hippies Travel Chiapas, Pura Vida Chiapas, Mochileros en Chiapas, Apasionado x Chiapas, Nichim Tours, EcoChiapas, Civitatis, Tiempo3.com</footer>
+
+
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════ DATA ════════════════
+let VIAJES = [
+// ── CHIAPAS LOCALES ──
+{id:1,mes:'mayo',dest:'Cañón del Sumidero + Chiapa de Corzo',alcance:'local',fechas:'Sábados de mayo',duracion:'1 día',precio:890,comp:1100,trend:'✅ Tour ancla',trendC:'tr-up',
+ig:`🌊 Paredes de 1,000 metros que te dejan sin palabras.
+
+El Cañón del Sumidero es de esos lugares que ves en fotos y dices "algún día". Hoy es ese día. 🚤 Recorrido en lancha por el Río Grijalva, cocodrilos asomándose, mariposas gigantes y el famoso árbol de navidad de musgo.
+
+Después: el mágico Pueblo de Chiapa de Corzo, pozol fresco y artesanías lacadas.
+
+📍 Salida desde Tuxtla | 1 día
+💰 Desde $890 por persona
+📲 Reserva por WhatsApp — cupo limitado 18 personas
+
+#CañónDelSumidero #Chiapas #NómadasTours`,
+itinerario:[{t:'6:00 am',x:'Salida desde Tuxtla'},{t:'6:30 am',x:'Embarcadero Cahuaré, Chiapa de Corzo'},{t:'7:00 am',x:'Lancha por el Cañón (2h): cocodrilos, monos araña, árbol de navidad'},{t:'9:15 am',x:'Desayuno libre en Chiapa de Corzo (pozol, tamales)'},{t:'10:00 am',x:'Recorrido Chiapa de Corzo: Fuente Mudéjar (1562), Templo Santo Domingo, Museo de la Laca'},{t:'12:00 pm',x:'Retorno a Tuxtla'}],
+incluye:['Transporte A/C a/r','Guía certificado','Boleto de lancha','Seguro básico','Agua embotellada'],
+noIncluye:['Desayuno/comida','Artesanías','Propinas'],
+recs:['Bloqueador solar y lentes','Ropa ligera y tenis cómodos','Llegar 10 min antes','No apto para cardíacos','Efectivo para comida y artesanías']},
+
+{id:2,mes:'mayo',dest:'El Chiflón + Lagos de Montebello',alcance:'local',fechas:'Domingos de mayo',duracion:'1 día',precio:990,comp:1200,trend:'🔥 El más vendido',trendC:'tr-hot',
+ig:`💚 Verde esmeralda + azul turquesa = Chiapas en estado puro.
+
+La Cascada Velo de Novia cae 120 metros y te moja aunque estés a 20 pasos. 😱 Después, los Lagos de Montebello con 60 lagunas de colores imposibles: verde, azul, negro, rojo... todo natural.
+
+📍 Salida desde Tuxtla | 1 día completo
+💰 Desde $990 por persona
+📲 ¡Ya casi lleno!
+
+#ElChiflón #LagosMontebello #Chiapas #NómadasTours`,
+itinerario:[{t:'6:00 am',x:'Salida desde Tuxtla hacia Tzimol (2h 20min)'},{t:'8:20 am',x:'Parque El Chiflón: sendero 1.3km, cascadas El Suspiro, Ala de Ángel, Arco Iris y Velo de Novia (120m). Nado'},{t:'11:30 am',x:'Traslado a Lagos de Montebello (1h 40min)'},{t:'1:00 pm',x:'Comida libre en restaurantes del parque'},{t:'2:00 pm',x:'Lagos: Pojoj, Tziscao, Internacional. Kayak/balsa opcional ($150)'},{t:'4:30 pm',x:'Retorno a Tuxtla'},{t:'7:00 pm',x:'Llegada'}],
+incluye:['Transporte A/C a/r','Guía','Entradas a ambos parques','Seguro','Agua'],
+noIncluye:['Alimentación','Kayak ($150 opcional)','Propinas'],
+recs:['Traje de baño y toalla','Calzado para agua','Pastillas antimareo','El agua de El Chiflón es fría','Reservar con 1 semana']},
+
+{id:3,mes:'mayo',dest:'Sima de las Cotorras + Cañón de la Venta',alcance:'local',fechas:'15-16-17 mayo',duracion:'1 día',precio:990,comp:1200,trend:'🌿 Exclusivo',trendC:'tr-up',
+ig:`🦜 140 metros de profundidad. Cientos de cotorras en espiral. Pinturas rupestres de 2,000 años.
+
+La Sima de las Cotorras es el secreto que Chiapas guarda para quienes van más allá. Un hoyo en la tierra con selva virgen en el fondo y el espectáculo al atardecer de las cotorras volviendo: inolvidable.
+
+📍 Salida desde Tuxtla | 1 día
+💰 Desde $990 por persona
+
+#SimaLasCotorras #Chiapas #NómadasTours`,
+itinerario:[{t:'6:00 am',x:'Salida hacia la Reserva de la Selva del Ocote'},{t:'8:30 am',x:'Cañón de la Venta: 874 escalones hasta Cascada El Aguacero. Senderismo y nado'},{t:'11:30 am',x:'Traslado a la Sima. Comida en restaurante del lugar (no incluida)'},{t:'1:00 pm',x:'Arnés y casco. Descenso y recorrido perimetral de la fosa. Pinturas rupestres'},{t:'5:30 pm',x:'🌅 Cotorras regresando en espiral al atardecer'},{t:'7:00 pm',x:'Retorno a Tuxtla'}],
+incluye:['Transporte A/C','Guía','Arnés y casco para la Sima','Entradas a ambos sitios','Seguro','Agua'],
+noIncluye:['Alimentación','Rappel (en sitio)','Propinas'],
+recs:['Ropa para mojarse','Snacks energéticos','Requiere buena condición física','No apto menores 8 años','Llevar linterna']},
+
+{id:4,mes:'mayo',dest:'Boca del Cielo + Puerto Arista',alcance:'local',fechas:'Fines de semana mayo',duracion:'1 día',precio:890,comp:1000,trend:'🏖️ Playa chiapaneca',trendC:'tr-up',
+ig:`🌊 El mar muerto + el mar vivo. Las dos caras de la playa más especial de Chiapas.
+
+Boca del Cielo tiene algo único: un lado tranquilo como alberca (bananeras, kayak) y al cruzar el manglar... el Pacífico salvaje te espera. 🐦 Cientos de aves, tortugas y el mejor atardecer del sur de México.
+
+📍 Salida desde Tuxtla | 1 día
+💰 Desde $890 por persona
+
+#BocaDelCielo #Chiapas #NómadasTours`,
+itinerario:[{t:'5:30 am',x:'Salida desde Tuxtla (3h)'},{t:'8:30 am',x:'Llegada. Lancha por manglares'},{t:'9:00 am',x:'Actividades en mar muerto: banana, kayak (extra). Nado en aguas tranquilas'},{t:'11:00 am',x:'Cruce al Pacífico. Avistamiento de aves'},{t:'1:00 pm',x:'Comida en palapa (llevar $200-400)'},{t:'3:00 pm',x:'Paseo por manglares. Cocodrilos y aves'},{t:'4:30 pm',x:'Retorno a Tuxtla'},{t:'7:30 pm',x:'Llegada'}],
+incluye:['Transporte A/C a/r','Guía','Lancha por manglares','Seguro','Agua'],
+noIncluye:['Actividades acuáticas','Comida','Propinas'],
+recs:['Bloqueador biodegradable','Ropa ligera y traje de baño','Repelente','Efectivo para mariscos','Ideal para niños']},
+
+{id:5,mes:'mayo',dest:'Volcán Tacaná — Ruta Chiquihuitán',alcance:'local',fechas:'Fines de semana mayo',duracion:'2 días / 1 noche',precio:2290,comp:2500,trend:'🌋 Aventura extrema',trendC:'tr-hot',
+ig:`🌋 4,066 metros. El segundo pico más alto de Centroamérica. La frontera entre México y Guatemala hecha montaña.
+
+El Tacaná por la ruta de Chiquihuitán es la experiencia de alta montaña más accesible desde Chiapas. Sales entre bosque tropical, pasas por bosque de niebla, llegas al páramo volcánico y en la cumbre... dos países a tus pies. 🇲🇽🇬🇹
+
+No es un hike. Es una transformación.
+
+📍 2 días desde Tuxtla | 1 noche en campamento
+💰 Desde $2,290 por persona
+📲 Máx. 12 personas por salida
+
+#VolcánTacaná #Chiapas #NómadasTours #AltaMontaña #Montañismo`,
+itinerario:[{t:'Día 1',x:''},{t:'5:00 am',x:'Salida desde Tuxtla hacia Unión Juárez (3.5h por Tapachula)'},{t:'8:30 am',x:'Desayuno en Unión Juárez (no incluido)'},{t:'9:00 am',x:'Traslado en camioneta a Cantón Chiquihuitán (1,800 msnm). Inicio del ascenso con guía local. Vegetación: selva → bosque de niebla → páramo volcánico'},{t:'2:00 pm',x:'Campamento en Cabaña Don Francisco (~3,000 msnm). Instalación de equipo. Cena incluida'},{t:'Día 2',x:''},{t:'4:00 am',x:'Inicio del tramo final hacia la cima (3-4h de ascenso)'},{t:'7:00 am',x:'⭐ Cumbre del Tacaná (4,066 msnm). Vista de dos países. Fotografía. Descanso'},{t:'8:00 am',x:'Descenso por ruta Talquián'},{t:'12:00 pm',x:'Llegada a Unión Juárez. Comida (no incluida)'},{t:'4:00 pm',x:'Retorno a Tuxtla'}],
+incluye:['Transporte a/r Tuxtla–Unión Juárez','Guía de montaña certificado','1 noche en cabaña (campamento)','Cena y desayuno del campamento','Permisos comunitarios','Equipo básico (casco, bastones)','Seguro de montaña'],
+noIncluye:['Desayuno Unión Juárez','Equipo personal (sleeping bag, capas)','Propinas al guía local','Mula de carga (opcional en sitio)'],
+recs:['Condición física: ALTA (10-12h de caminata total)','Llevar 3 capas de ropa (0-5°C en cumbre)','Botas de montaña impermeables OBLIGATORIAS','Llevar dulces para niños de las comunidades (tradición)','Consultar pronóstico del tiempo antes del viaje']},
+
+{id:6,mes:'junio',dest:'Volcán Chichonal — Ascenso al Cráter',alcance:'local',fechas:'Sábados de junio',duracion:'2 días / 1 noche',precio:1890,comp:2200,trend:'🌋 Volcano único',trendC:'tr-hot',
+ig:`🌋 En 1982 lo borró todo en un radio de 8 km. Hoy, 40 años después, la naturaleza lo está reconquistando. Y tú puedes entrar al cráter.
+
+El Volcán Chichonal tiene algo que ningún otro en México: un lago de azufre dentro del cráter. Aguas color turquesa que burbujean con gases volcánicos, temperatura cálida y paredes de roca blanca. Un paisaje de otro planeta. 🟢
+
+La subida por el camino desde Chapultenango es de 2-3 horas entre vegetación que creció desde las cenizas. La historia de este volcán es de destrucción y renacimiento. Y ahora puedes ser parte de ella.
+
+📍 2 días desde Tuxtla | 1 noche en Pichucalco/Chapultenango
+💰 Desde $1,890 por persona
+📲 Cupo máx. 15 personas
+
+#VolcánChichonal #Chiapas #NómadasTours #VolcanoHike`,
+itinerario:[{t:'Día 1',x:''},{t:'6:00 am',x:'Salida desde Tuxtla hacia Chapultenango (4h aprox.)'},{t:'10:30 am',x:'Llegada a comunidad "Viejo Volcán". Check-in en hospedaje local'},{t:'12:00 pm',x:'Comida (no incluida). Briefing con guía local sobre el volcán y la erupción de 1982'},{t:'3:00 pm',x:'Tarde libre / descanso para la ascenso del día siguiente'},{t:'Día 2',x:''},{t:'5:00 am',x:'Inicio del ascenso con guía (6 km al cráter, 2-3h). Paisaje de reforestación post-erupción'},{t:'8:00 am',x:'Llegada al cráter: lago de azufre turquesa, chimeneas de gases, panorámica de la sierra'},{t:'10:00 am',x:'Descenso'},{t:'12:00 pm',x:'Comida en comunidad (no incluida)'},{t:'1:00 pm',x:'Retorno a Tuxtla'},{t:'5:00 pm',x:'Llegada aproximada'}],
+incluye:['Transporte a/r','Guía certificado y guía local comunitario','1 noche en hospedaje local','Desayuno del campamento','Permisos comunitarios','Seguro de viajero'],
+noIncluye:['Comidas no señaladas','Equipo personal de montaña','Propinas'],
+recs:['Condición física: MEDIA (6km ida y vuelta)',"Llevar ropa abrigadora (al amanecer: 10-15°C en cumbre)",'Mascarilla o pañuelo para gases cerca del cráter','Zapatillas de trekking resistentes al barro','No bañarse en el lago volcánico (azufre)']},
+
+{id:7,mes:'junio',dest:'Kayak en el Cañón del Sumidero',alcance:'local',fechas:'Sábados y domingos de junio',duracion:'Medio día',precio:799,comp:900,trend:'🚣 Adrenalina única',trendC:'tr-hot',
+ig:`🚣 El Cañón del Sumidero en lancha lo conoce todo el mundo. En kayak, eres tú vs. las paredes de 1,000 metros.
+
+Rema a tu ritmo entre acantilados gigantes, acércate a los cocodrilos que toman el sol en las orillas (con precaución 😅), pasa bajo cascadas y siente la escala real de este cañón desde el nivel del río. Una perspectiva que la lancha de motor nunca te puede dar.
+
+⚠️ Actividad independiente: transporte no incluido. Punto de salida: embarcadero Cahuaré, Chiapa de Corzo.
+
+💰 $799 por persona
+📲 Reserva tu kayak por WhatsApp
+
+#KayakSumidero #CañónDelSumidero #Chiapas #NómadasTours #KayakMéxico`,
+itinerario:[{t:'Hora acordada',x:'Punto de reunión: Embarcadero Cahuaré, Chiapa de Corzo (30 min de Tuxtla por tu cuenta)'},{t:'+15 min',x:'Briefing de seguridad. Entrega de kayak, chaleco y remo. Instrucciones básicas'},{t:'+30 min',x:'Inicio del recorrido en kayak por el Río Grijalva dentro del Cañón'},{t:'~2.5h',x:'Recorrido: pared del Árbol de Navidad, avistamiento de cocodrilos, cigüeñas, cascadas laterales. Puntos de descanso'},{t:'Final',x:'Regreso al embarcadero. Devolución de equipo'}],
+incluye:['Kayak doble o individual','Chaleco salvavidas','Remo','Instructor/guía de kayak en el agua','Seguro de actividad'],
+noIncluye:['Transporte (ir por tu cuenta a Chiapa de Corzo)','Alimentación','Propinas'],
+recs:['Lleva ropa que puedas mojar completamente','Sandalias con sujección o tenis viejos','Aplica bloqueador ANTES de llegar (no en el agua)','Saber nadar es recomendable aunque hay chaleco','Ideal para 2 personas en kayak doble']},
+
+{id:8,mes:'junio',dest:'Cascadas Las Nubes + Las Guacamayas',alcance:'local',fechas:'6-7 junio | 20-21 junio',duracion:'2 días / 1 noche',precio:2490,comp:2900,trend:'🌿 Joya escondida',trendC:'tr-up',
+ig:`🦜 ¿Sabías que en Chiapas puedes ver guacamayas rojas en libertad? Casi nadie lo sabe.
+
+Las Cascadas Las Nubes: agua turquesa, tirolesa de 200m sobre el río, puentes colgantes y selva viva. Y al amanecer del día 2, las guacamayas despegan en bandadas desde el Río Lacantún. El sonido es indescriptible. 🌅
+
+📍 2 días desde Tuxtla | 1 noche en cabaña
+💰 Desde $2,490 por persona
+
+#LasNubes #LasGuacamayas #Chiapas #NómadasTours`,
+itinerario:[{t:'Día 1',x:''},{t:'6:00 am',x:'Salida desde Tuxtla. Desayuno en Comitán (no incluido)'},{t:'10:00 am',x:'Cascadas Las Nubes: senderos, tirolesa 200m, puente colgante, nado. Comida incluida'},{t:'4:00 pm',x:'Traslado a Las Guacamayas. Check-in en cabañas. Cena incluida'},{t:'Día 2',x:''},{t:'5:30 am',x:'⭐ Guacamayas rojas despegando al amanecer'},{t:'7:00 am',x:'Desayuno incluido'},{t:'8:30 am',x:'Lancha por el Río Lacantún'},{t:'11:00 am',x:'Retorno a Tuxtla (3pm llegada)'}],
+incluye:['Transporte a/r','Guía','1 noche cabaña','Cena + desayuno','Comida día 1','Tirolesa','Lancha','Entradas','Seguro'],
+noIncluye:['Desayuno día 1','Bebidas alcohólicas','Propinas'],
+recs:['Ropa para mojarse + cambio extra','Repelente fuerte','No usar ropa roja cerca de guacamayas','Linterna','Cámara con zoom']},
+
+{id:9,mes:'junio',dest:'San Cristóbal + Chamula + Zinacantán',alcance:'local',fechas:'Sábados de junio',duracion:'1 día',precio:790,comp:950,trend:'✅ Clásico top',trendC:'tr-up',
+ig:`⛪ El templo más extraño de México está en Chiapas. Y es impresionante.
+
+San Juan Chamula: velas en el piso, copal en el aire, gallinas y santos vestidos de colores. Sin bancas. Sin curas. Fe ancestral que no se parece a nada que hayas visto. Y en Zinacantán: pox de flores y bordados que llevan generaciones perfeccionando.
+
+📍 Salida desde Tuxtla | 1 día
+💰 Desde $790 por persona
+
+#SanCristobal #Chamula #Chiapas #NómadasTours`,
+itinerario:[{t:'7:00 am',x:'Salida desde Tuxtla a SCLC (1.5h)'},{t:'8:30 am',x:'Centro histórico: Catedral, Andador Eclesiástico, mercado Santo Domingo'},{t:'10:30 am',x:'San Juan Chamula: templo Mayor con rituales tzotziles'},{t:'12:00 pm',x:'Zinacantán: taller de bordado, degustación de pox'},{t:'1:30 pm',x:'Comida libre en SCLC'},{t:'3:00 pm',x:'Tiempo libre en SCLC'},{t:'5:00 pm',x:'Retorno a Tuxtla (6:30pm llegada)'}],
+incluye:['Transporte a/r','Guía especializado tzotzil','Entrada a Chamula','Degustación Zinacantán','Seguro','Agua'],
+noIncluye:['Alimentación','Artesanías','Fotos internas (prohibido)'],
+recs:['🚫 Prohibido fotografiar dentro del templo','Ropa que cubra hombros y rodillas','No señalar rituales','Efectivo para artesanías','Ideal para primera visita']},
+
+{id:10,mes:'julio',dest:'Palenque + Agua Azul + Misol-Ha',alcance:'local',fechas:'Sábados de julio',duracion:'1 día (largo)',precio:1290,comp:1500,trend:'🔥 El tour más solicitado',trendC:'tr-hot',
+ig:`🏛️ La ciudad maya más bella de México + cascadas que no tienen filtro.
+
+Misol-Ha: 35m de caída con cueva detrás. Agua Azul: azul añil imposible en terrazas. Palenque: templos entre niebla de selva y el secreto del Rey Pakal. Este tour lo pides una vez y lo repites cada año.
+
+📍 Salida 4am desde Tuxtla | Regreso nocturno
+💰 Desde $1,290 por persona
+
+#Palenque #AguaAzul #Chiapas #NómadasTours`,
+itinerario:[{t:'4:00 am',x:'Salida puntual desde Tuxtla'},{t:'6:30 am',x:'Parada en Ocosingo (desayuno no incluido)'},{t:'9:00 am',x:'Misol-Ha: cueva detrás de la cascada, nado (45 min)'},{t:'10:30 am',x:'Agua Azul: terrazas turquesa, nado (1.5h)'},{t:'12:30 pm',x:'Comida libre en Agua Azul'},{t:'2:00 pm',x:'Zona Arqueológica de Palenque con guía'},{t:'5:00 pm',x:'Retorno'},{t:'10:00 pm',x:'Llegada a Tuxtla'}],
+incluye:['Transporte A/C','Guía','Entradas Misol-Ha, Agua Azul y Palenque','Seguro','Agua'],
+noIncluye:['Alimentación (llevar $300+)','Propinas','Actividades extra'],
+recs:['Dormir bien la noche anterior','Traje de baño y toalla','Pastillas antimareo','Zapatos que puedan mojarse','Poncho para la lluvia']},
+
+{id:11,mes:'julio',dest:'Buceo en Cenote Chukumaltik',alcance:'local',fechas:'Sábados y domingos de julio',duracion:'1 día',precio:2100,comp:2500,trend:'🤿 Único en Chiapas',trendC:'tr-hot',
+ig:`🤿 70 metros de profundidad. Árboles petrificados en el fondo. Chimeneas de azufre. Un altar a la Virgen bajo el agua. Esto es el Cenote Chukumaltik: La Bella Escondida.
+
+A solo 21 km de Comitán, este cenote de 200 metros de diámetro tiene aguas cristalinas a 24°C con visibilidad de más de 40 metros. Es el mejor sitio de buceo de altura del sureste mexicano y uno de los secretos mejor guardados de Chiapas.
+
+El programa empieza con teoría y práctica en alberca en Uninajab. Luego al cenote. Luego... no querrás salir. 🌀
+
+📍 Salida desde Tuxtla | 1 día completo
+💰 Desde $2,100 por persona (incluye equipo y clases)
+📲 Cupo limitado — se requiere reserva previa
+
+#CenoteChukumaltik #BuceoChiapas #NómadasTours #BuceoMéxico #CenoteChiapas`,
+itinerario:[{t:'5:30 am',x:'Salida desde Tuxtla hacia Comitán (2.5h)'},{t:'8:00 am',x:'Llegada a San Francisco Uninajab. Desayuno libre (no incluido, llevar $100-150)'},{t:'9:00 am',x:'Clase teórica de buceo: equipos, señas, protocolos de seguridad'},{t:'10:30 am',x:'Práctica en alberca del hotel: ejercicios de respiración, equilibrio, descenso controlado'},{t:'12:00 pm',x:'Traslado al Cenote Chukumaltik (15 min)'},{t:'12:30 pm',x:'Inmersión en el cenote: profundidad según nivel (max 12m para principiantes). Árboles petrificados, chimeneas de azufre, altar subacuático, yacimientos de cuarzo'},{t:'2:30 pm',x:'Salida del cenote. Tiempo para snorkel o descanso en la orilla'},{t:'3:00 pm',x:'Comida (no incluida, llevar $150-200)'},{t:'3:30 pm',x:'Retorno a la escuela: convivencia, preguntas, certificado de asistencia'},{t:'5:00 pm',x:'Retorno a Tuxtla'},{t:'7:30 pm',x:'Llegada aproximada'}],
+incluye:['Transporte a/r Tuxtla–Chukumaltik','Clase teórica de buceo','Práctica en alberca','Instructor certificado','Equipo completo (traje, tanque, regulador, máscara, aletas)','Inmersión en el cenote','Entrada al cenote','Seguro de actividad acuática'],
+noIncluye:['Desayuno y comida','Propinas','Snorkel adicional (opcional en sitio)'],
+recs:['No requieres experiencia previa: incluye clases completas','Llevar traje de baño debajo de la ropa','Bloqueador biodegradable OBLIGATORIO (cenote protegido)','No consumir alcohol 12h antes del buceo','Agua a 24°C todo el año: no hace frío','Llevar cámara acuática o GoPro para el recuerdo']},
+
+{id:12,mes:'julio',dest:'Volcán Acatenango + Volcán de Fuego',alcance:'internacional',fechas:'Viernes 7pm — Lunes 2am',duracion:'3 días / 2 noches',precio:7700,comp:8500,trend:'🔥 La experiencia más épica',trendC:'tr-hot',
+ig:`🌋 Ver lava en vivo. De noche. Con el Volcán de Fuego rugiendo enfrente. Campamento en el cráter a 3,976m.
+
+El Acatenango es el trekking más intenso y más hermoso de Centroamérica. Subir entre nubes, acampar en el filo del volcán y despertar con el Fuego lanzando columnas de lava al alba es una de esas experiencias que te cambian para siempre.
+
+Salimos el viernes a las 7pm desde Tuxtla y regresamos el lunes de madrugada. El fin de semana más épico de tu vida.
+
+📍 Sale viernes 7pm · Regresa lunes ~2am
+💰 $7,700 por persona (entrada a Guatemala NO incluida)
+📲 Solo 12 lugares — ¡reserva esta semana!
+
+#VolcánAcatenango #VolcánDeFuego #Guatemala #NómadasTours #TrekkingVolcán`,
+itinerario:[{t:'Viernes 7pm',x:'Salida desde Tuxtla hacia Tapachula'},{t:'Sábado 2am',x:'Cruce por La Mesilla o Ciudad Hidalgo hacia Guatemala. (⚠️ Pago de entrada en frontera: NO incluido en el precio)'},{t:'Sábado 7am',x:'Llegada a Antigua Guatemala. Desayuno. Briefing de seguridad con guía de montaña'},{t:'Sábado 10am',x:'Inicio del ascenso al Acatenango desde La Soledad (3,000 msnm). 6-8h de subida'},{t:'Sábado 5pm',x:'Campamento base en el cráter (~3,900 msnm). Instalación de carpas. Cena incluida. Noche viendo erupciones del Volcán de Fuego'},{t:'Domingo 5am',x:'⭐ Amanecer sobre las nubes. Vista de 5 volcanes. Desayuno en campamento'},{t:'Domingo 9am',x:'Descenso (3-4h)'},{t:'Domingo 2pm',x:'Llegada a Antigua. Comida libre. Tiempo libre'},{t:'Domingo 8pm',x:'Retorno hacia México'},{t:'Lunes ~2am',x:'Llegada a Tuxtla Gutiérrez'}],
+incluye:['Transporte a/r Tuxtla–Guatemala–Tuxtla','Guía de montaña certificado (lado guatemalteco)','Equipo de campamento (carpa, sleeping bag, colchoneta)','Cena y desayuno en campamento','Bastones de trekking','Seguro de montaña internacional','Noche en Antigua (hotel compartido)'],
+noIncluye:['Pago de entrada a Guatemala en frontera (variable, ~$40-60 USD)','Alimentación no señalada','Equipo de montaña personal (guantes, gorro, ropa térmica)','Propinas al guía guatemalteco'],
+recs:['Condición física: ALTA — 6-8h de subida dura con mochila','Ropa térmica OBLIGATORIA: -5°C a 0°C en la noche del campamento','Botas de montaña impermeables imprescindibles','Llevar $100 USD en efectivo para la frontera y extras','No apto para personas con problemas cardíacos o respiratorios','Consultar estado del Volcán de Fuego antes del viaje']},
+
+// ── NACIONALES ──
+{id:13,mes:'mayo',dest:'Ruta Maya — Agua Azul, Misol-Ha + Palenque',alcance:'nacional',fechas:'9-10 mayo | 23-24 mayo',duracion:'2 días / 1 noche',precio:2090,comp:2290,trend:'✅ Clásico seguro',trendC:'tr-up',
+ig:`🌿 Misol-Ha al amanecer. Agua Azul al mediodía. Palenque al atardecer. Perfección en 2 días.
+
+La Ruta Maya de Chiapas es el itinerario que TODO viajero mexicano tiene pendiente. Nos quedamos una noche en Palenque: cena bajo las estrellas mientras los monos aúllan desde la selva. 🏛️
+
+📍 2 días desde Tuxtla | Con hospedaje
+💰 Desde $2,090 por persona
+
+#RutaMaya #Palenque #Chiapas #NómadasTours`,
+itinerario:[{t:'Día 1',x:''},{t:'4:30 am',x:'Salida desde Tuxtla'},{t:'9:30 am',x:'Misol-Ha: cascada y nado'},{t:'11:00 am',x:'Agua Azul: senderismo y nado'},{t:'3:00 pm',x:'Zona Arqueológica Palenque'},{t:'6:00 pm',x:'Hotel en Palenque'},{t:'Día 2',x:''},{t:'9:00 am',x:'Museo de Palenque y zona norte'},{t:'11:00 am',x:'Retorno a Tuxtla (4pm llegada)'}],
+incluye:['Transporte a/r','Guía','1 noche hotel Palenque','Entradas Misol-Ha, Agua Azul, Palenque','Seguro','Agua'],
+noIncluye:['Alimentación','Propinas','Habitación individual (+$400)'],
+recs:['Llevar dinero extra para artesanías mayas','Repelente para la selva','Ropa de colores neutros']},
+
+{id:14,mes:'julio',dest:'Querétaro — Ruta del Vino y el Queso',alcance:'nacional',fechas:'17-19 julio | 14-16 agosto',duracion:'3 días / 2 noches',precio:4390,comp:4590,trend:'🍷 Experiencial premium',trendC:'tr-hot',
+ig:`🍷 Porque los viajes también se saborean.
+
+Viñedos premiados, queserías artesanales, balnearios entre cactus y Tequisquiapan, el pueblo artesano más acogedor de México. Dormimos entre vides, amanecemos con niebla sobre los viñedos. Esto es lujo accesible. 🫧
+
+📍 3 días desde Tuxtla
+💰 Desde $4,390 por persona
+
+#Querétaro #RutaDelVino #NómadasTours`,
+itinerario:[{t:'Día 1',x:'Vuelo/autobús Tuxtla–Querétaro. Tequisquiapan: mercado, quesos, Pueblo Mágico'},{t:'Día 2',x:'Tour de viñedos. Cata guiada 4 vinos + queso regional. Balneario. Cena de gala con maridaje'},{t:'Día 3',x:'Centro histórico Querétaro UNESCO. Acueducto. Retorno a Tuxtla'}],
+incluye:['Transporte a/r','2 noches hotel 3⭐','Cata guiada en viñedo','Cena con maridaje','Tour histórico','Seguro'],
+noIncluye:['Vuelo','Desayunos','Balneario ($150-300)','Vinos adicionales'],
+recs:['Reservar con anticipación en temporada vacacional','Ropa elegante-casual para la cena','Ideal para cumpleaños o aniversarios']},
+
+{id:15,mes:'julio',dest:'Playas de Oaxaca — Puerto Escondido + Mazunte',alcance:'nacional',fechas:'3-5 julio | 14-16 agosto',duracion:'3 días / 2 noches',precio:3390,comp:3590,trend:'🏄 Surf en auge',trendC:'tr-hot',
+ig:`🌊 El surf más salvaje de México. Las tortugas más tranquilas. La naturaleza más libre.
+
+Puerto Escondido + Mazunte: dos mundos en un viaje. Adrenalina y paz. Ola Zicatela y liberación de tortugas al atardecer.
+
+📍 3 días desde Tuxtla
+💰 Desde $3,390 por persona
+
+#PuertoEscondido #Mazunte #NómadasTours`,
+itinerario:[{t:'Día 1',x:'Traslado a Puerto Escondido. Playa Principal y Zicatela. Cena en mercado'},{t:'Día 2',x:'Snorkel en Manzanillo. Playa Carrizalillo. Liberación de tortugas en Mazunte (julio-oct)'},{t:'Día 3',x:'Amanecer en Zicatela. Tour Mazunte y Punta Cometa. Retorno'}],
+incluye:['Transporte a/r','2 noches en posada','Tour liberación de tortugas','Guía local','Seguro'],
+noIncluye:['Alimentación','Clase de surf ($300)','Snorkel (equipo en renta)'],
+recs:['No nadar en Zicatela sin experiencia en julio','Bloqueador biodegradable','Llevar linterna roja para tortugas']},
+
+{id:16,mes:'agosto',dest:'Salto en Paracaídas + Tepoztlán',alcance:'nacional',fechas:'29-30 agosto',duracion:'2 días / 1 noche',precio:4699,comp:5200,trend:'🔥 Wellness + Adrenalina',trendC:'tr-hot',
+ig:`🪂 Primero saltas desde 4,000 metros. Después meditas en el cerro sagrado del Tepozteco.
+
+60 segundos de caída libre y la mente en blanco. Luego Tepoztlán: mercado de cristales, temazcal y subida al Tepozteco con vistas que quitan el aliento (en el buen sentido). 
+
+El 70% de los viajeros en 2026 dice que viaja para cuidar su salud mental. Este tour es para ellos.
+
+📍 2 días desde Tuxtla
+💰 Desde $4,699 por persona
+📲 Solo 10 lugares
+
+#Paracaídas #Tepoztlán #NómadasTours #WellnessTravel`,
+itinerario:[{t:'Día 1',x:'Vuelo Tuxtla–CDMX. Traslado a Tequesquitengo (2h). Briefing. 🪂 Salto en tándem desde 4,000m (video y fotos incluidos). Cena'},{t:'Día 2',x:'Traslado a Tepoztlán (40min). Mercado de cristales. Subida al Tepozteco (45min). Temazcal opcional ($400). Retorno a Tuxtla vía CDMX'}],
+incluye:['Vuelo Tuxtla–CDMX a/r','Transporte Cdmx–Tepoz a/r','Salto en tándem certificado','Video y fotos del salto','Guía Tepoztlán','1 noche hotel','Seguro de vida'],
+noIncluye:['Alimentación','Temazcal ($400)','Artesanías de Tepoztlán'],
+recs:['⚠️ Peso máximo: 100kg','No apto para embarazadas ni cardíacos','Ropa cómoda y cerrada para el salto','Confirmar con 3 días de anticipación (depende del clima)']},
+
+{id:17,mes:'junio',dest:'Antigua Guatemala + Lago Atitlán',alcance:'internacional',fechas:'12-14 junio | 7-9 agosto',duracion:'3 días / 2 noches',precio:4290,comp:4490,trend:'🔥 Internacional top',trendC:'tr-hot',
+ig:`🇬🇹 La ciudad colonial más bella de América + el lago más fotogénico del mundo. En 3 días.
+
+Antigua UNESCO + Lago Atitlán rodeado de 3 volcanes + comunidades mayas tzutujiles que tejen a mano. El kayak al amanecer sobre el lago es la fotografía de tu vida. 🌋
+
+📍 3 días desde Tuxtla
+💰 Desde $4,290 por persona
+
+#AntiguaGuatemala #LagoAtitlán #NómadasTours`,
+itinerario:[{t:'Día 1',x:'Autobús nocturno o vuelo a Guatemala. Antigua: Catedral, Arco Santa Catalina, chocolate artesanal. Cena colonial'},{t:'Día 2',x:'Trekking Volcán Pacaya opcional (+$500). Tarde: lancha a Lago Atitlán. Noche orilla del lago'},{t:'Día 3',x:'Kayak al amanecer. Comunidad tzutujil. Mercado textil. Retorno a Tuxtla'}],
+incluye:['Transporte a/r','2 noches (Antigua + Atitlán)','Guía bilingüe','Lancha entre pueblos','Kayak en Atitlán','Tour cultural','Seguro'],
+noIncluye:['Vuelo','Alimentación','Volcán Pacaya (+$500)','Artesanías'],
+recs:['No requieren visa los mexicanos','Llevar quetzales ($1 ≈ Q8)','Bloqueador en el lago (altitud = rayos fuertes)']},
+
+{id:18,mes:'agosto',dest:'Oaxaca — Guelaguetza + Hierve El Agua',alcance:'nacional',fechas:'1-3 agosto | 8-10 agosto',duracion:'3 días / 2 noches',precio:3490,comp:3590,trend:'🎭 Guelaguetza 2026',trendC:'tr-hot',
+ig:`🎭 El festival cultural más importante del sur de México. Y tú vas a vivirlo.
+
+Guelaguetza: danzas indígenas de 8 regiones en el Cerro del Fortín. Hierve El Agua: cascadas petrificadas. Monte Albán: ciudad zapoteca. Y el mejor mole negro de tu vida.
+
+📍 3 días desde Tuxtla
+💰 Desde $3,490 por persona
+
+#Guelaguetza #Oaxaca #NómadasTours`,
+itinerario:[{t:'Día 1',x:'Vuelo/autobús a Oaxaca. Centro histórico. Mercado Benito Juárez. Cena de autor'},{t:'Día 2',x:'Monte Albán con guía. 5pm: Guelaguetza en Cerro del Fortín (palco incluido). Noche: mezcal'},{t:'Día 3',x:'Hierve El Agua: cascadas petrificadas, pozas naturales. Retorno a Tuxtla'}],
+incluye:['Transporte a/r','2 noches hotel 3⭐ Oaxaca','Entrada Guelaguetza palco','Tour Monte Albán','Tour Hierve El Agua','Guía','Seguro'],
+noIncluye:['Alimentación','Mezcal','Vuelo','Artesanías'],
+recs:['Agosto = Guelaguetza: reservar con 3 semanas mínimo','Ropa cómoda y fresca','Hierve El Agua: llevar traje de baño','Probar la comida callejera con confianza']}
+];
+
+// ════════════════ COMPETENCIA ════════════════
+const COMPETENCIA = [
+{nombre:'Hippies Travel Chiapas',color:'#2ecc71',emoji:'🌿',handle:'@hippiestravelchs',contacto:'961 273 2841',tours:[
+{n:'Campeche, Playa Sabancuy y Pueblo Mágico Isla Aguada',p:'$2,990',f:'4-5 jul'},{n:'Volcán Tacaná',p:'$2,290',f:'4-5 jul'},{n:'Luciérnagas, Zacatlán de las Manzanas',p:'$3,490',f:'11-12 jul'},{n:'Laguna Miramar',p:'$2,290',f:'11-12 jul'},{n:'Parques de Guatemala (Xocomil y Xetulul)',p:'$2,990',f:'18-19 jul'},{n:'Salto en Paracaídas, Tequesquitengo',p:'$4,290',f:'18-19 jul'},{n:'Parapente en Orizaba + Casavegas Veracruz',p:'$4,290',f:'25-26 jul'},{n:'Ruta del Vino y el Queso, Querétaro',p:'$4,190',f:'24-26 jul'},{n:'Bacalar y Mahahual',p:'$3,390',f:'31 jul-2 ago'},{n:'Playas de Oaxaca (Puerto Escondido, Zicatela)',p:'$3,390',f:'31 jul-2 ago'},{n:'⭐ Tailandia (Viaje Especial)',p:'Consultar',f:'23 jul - 3 ago'},{n:'San José del Pacífico + Playas Oaxaca',p:'$3,390',f:'1-3 may'},{n:'Tulum y Playa del Carmen',p:'$4,290',f:'1-3 may'},{n:'Ruta Maya (Agua Azul, Misol-Ha, Palenque)',p:'$2,290',f:'9-10 may'},{n:'Parapente en Orizaba + Veracruz',p:'$4,290',f:'9-10 may'},{n:'Laguna Miramar',p:'$2,290',f:'16-17 may'},{n:'Roca Partida, Los Tuxtlas y Catemaco',p:'$3,390',f:'23-24 may'},{n:'Volcán Tacaná',p:'$2,290',f:'30-31 may'}]},
+
+{nombre:'Pura Vida Chiapas',color:'#f39c12',emoji:'🌅',handle:'@puravida.chiapas',contacto:'9613373900',tours:[
+{n:'Parapente y Pueblo Mágico de Orizaba',p:'$3,990',f:'6-7 jun'},{n:'Oaxaca Centro + Hierve El Agua + Monte Albán',p:'$2,990',f:'6-7 jun'},{n:'Volcán Chichonal (1 día)',p:'$1,290',f:'7 jun'},{n:'Laguna de Bacalar',p:'$2,990',f:'13-14 jun'},{n:'Cerro Pelón Xplor + Playa del Sol',p:'$1,390',f:'14 jun'},{n:'Antigua Guatemala + Lago Atitlán',p:'$4,490',f:'12-14 jun'},{n:'Luciérnagas Puebla (Zacatlán)',p:'$3,590',f:'20-21 jun'},{n:'San José del Pacífico + Playas Oaxaca',p:'$3,290',f:'19-21 jun'},{n:'Parapente + Orizaba',p:'$3,990',f:'20-21 jun'},{n:'Laguna Bacalar + Mahahual',p:'$3,590',f:'26-28 jun'},{n:'Salto en Paracaídas + Tepoztlán',p:'$4,390',f:'27-28 jun'},{n:'Cerro Pelón Xplor + Playa del Sol',p:'$1,390',f:'28 jun'},{n:'Playas de Oaxaca',p:'$3,590',f:'3-5 jul'},{n:'Guatemala Xocomil + Xetulul',p:'$2,990',f:'4-5 jul'},{n:'Volcán Chichonal',p:'$1,290',f:'12 jul'},{n:'Oaxaca Centro + Hierve El Agua',p:'$2,990',f:'11-12 jul'},{n:'Campeche, Isla Aguada + Sabancuy',p:'$2,990',f:'11-12 jul'},{n:'Luciérnagas Puebla',p:'$3,590',f:'18-19 jul'},{n:'Querétaro Ruta del Vino',p:'$4,590',f:'17-19 jul'},{n:'San José del Pacífico + Oaxaca',p:'$3,290',f:'24-26 jul'},{n:'Laguna de Bacalar',p:'$2,990',f:'25-26 jul'},{n:'Cerro Pelón Xplor',p:'$1,390',f:'26 jul'},{n:'Querétaro Ruta del Vino',p:'$4,590',f:'31 jul-2 ago'},{n:'Guatemala Xocomil + Xetulul',p:'$2,990',f:'1-2 ago'},{n:'Antigua Guatemala + Lago Atitlán',p:'$4,390',f:'7-9 ago'},{n:'Oaxaca Centro + Hierve El Agua',p:'$2,990',f:'8-9 ago'},{n:'Playas de Oaxaca',p:'$3,590',f:'14-16 ago'},{n:'Querétaro Ruta del Vino',p:'$4,590',f:'14-16 ago'},{n:'Laguna Bacalar + Mahahual',p:'$3,590',f:'21-23 ago'},{n:'San José del Pacífico + Oaxaca',p:'$3,290',f:'21-23 ago'},{n:'Salto en Paracaídas + Tepoztlán',p:'$4,390',f:'29-30 ago'},{n:'Campeche, Isla Aguada + Sabancuy',p:'$2,990',f:'29-30 ago'}]},
+
+{nombre:'Mochileros en Chiapas',color:'#9b59b6',emoji:'🎒',handle:'@mochilerosenchiapas',contacto:'Ver Instagram/Web',tours:[
+{n:'Volcán Tacaná (senderismo)',p:'Consultar',f:'Salidas programadas'},{n:'Volcán Chichonal',p:'Consultar',f:'Salidas programadas'},{n:'Arco del Tiempo (Senderismo)',p:'Consultar',f:'Salidas programadas'},{n:'Lago Atitlán Guatemala',p:'Consultar',f:'Salidas programadas'},{n:'Cenote Chukumaltik (Buceo)',p:'Consultar',f:'Salidas programadas'},{n:'Volcán La Malinche',p:'Consultar',f:'Salidas programadas'},{n:'Pico de Orizaba',p:'Consultar',f:'Salidas programadas'},{n:'Iztaccíhuatl',p:'Consultar',f:'Salidas programadas'},{n:'Volcán Sierra Negra',p:'Consultar',f:'Salidas programadas'},{n:'Sótano del Popocalt',p:'Consultar',f:'Salidas programadas'},{n:'Laguna Miramar',p:'Consultar',f:'Salidas programadas'}]},
+
+{nombre:'Apasionado x Chiapas',color:'#e74c3c',emoji:'❤️',handle:'@apasionadoxchiapas',contacto:'Ver web',tours:[
+{n:'Cañón del Sumidero + traslado SCL',p:'Desde $1,490',f:'Salidas diarias'},{n:'Chiflón + Lagos de Montebello',p:'$750',f:'Diario (desde SCL)'},{n:'Selva Lacandona (Toniná + Metzabok)',p:'Consultar',f:'Prog. mensual'},{n:'Laguna Miramar desde Tuxtla',p:'Consultar',f:'Salidas prog.'},{n:'San Cristóbal + Chamula + Zinacantán',p:'Consultar',f:'Diario'}]},
+
+{nombre:'Nichim Tours',color:'#1abc9c',emoji:'🌿',handle:'nichimtours.com.mx',contacto:'nichimtoursandtravel@gmail.com',tours:[
+{n:'Sima de las Cotorras + Cañón de la Venta',p:'Consultar',f:'Salidas diarias (min 4 pax)'},{n:'Volcán Chichonal (2 días)',p:'Consultar',f:'Salidas programadas'},{n:'Chiapas Intenso 8 días',p:'Desde $6,500',f:'Sáb y Mar'},{n:'Palenque + Agua Azul + Misol-Ha',p:'Consultar',f:'Salidas diarias'}]},
+
+{nombre:'Enamórate de Chiapas',color:'#e67e22',emoji:'💛',handle:'enamoratedechiapas.com',contacto:'Ver web',tours:[
+{n:'Vive tu Aventura (5 días Chiapas completo)',p:'Consultar',f:'Salidas programadas'},{n:'Boca del Cielo + Puerto Arista',p:'Incluido en paquete',f:'Dentro de circuito'},{n:'Sima de las Cotorras + Zoomat',p:'Incluido en paquete',f:'Dentro de circuito'},{n:'Chiflón + Lagos de Montebello',p:'Incluido en paquete',f:'Dentro de circuito'}]}
+];
+
+// ════════════════ RENDER CATÁLOGO ════════════════
+function renderCatalogo(){
+  const TODOS_MESES=['mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  TODOS_MESES.forEach(m=>{
+    const g = document.getElementById(`grid-${m}`);
+    if(!g) return;
+    const viajes = VIAJES.filter(v=>v.mes===m);
+    g.innerHTML = viajes.map(v=>buildCard(v)).join('');
+    document.getElementById(`cat-${m}`).style.display = viajes.length ? 'block' : 'none';
+  });
+  updateStats();
+  renderEditorList();
+}
+
+function buildCard(v){
+  const sc = v.alcance==='local'?'s-local':v.alcance==='nacional'?'s-nac':'s-inter';
+  const alcLabel = v.alcance==='local'?'🌿 Chiapas':v.alcance==='nacional'?'🇲🇽 Nacional':'✈️ Internacional';
+  const alcColor = v.alcance==='local'?'t-local':v.alcance==='nacional'?'t-nac':'t-inter';
+  const save = v.comp ? Math.round(((v.comp-v.precio)/v.comp)*100) : 0;
+  const itHtml = (v.itinerario||[]).map(r=>`<li><span class="it-t">${esc(r.t)}</span><span class="it-x">${esc(r.x)}</span></li>`).join('');
+  const incHtml = (v.incluye||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+  const excHtml = (v.noIncluye||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+  const recHtml = (v.recs||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+  const igId = `ig-${v.id}`;
+  return `<div class="card" data-id="${v.id}" data-mes="${v.mes}" data-alcance="${v.alcance}" data-dest="${v.dest.toLowerCase()}">
+  <div class="card-stripe ${sc}"></div>
+  <div class="card-head">
+    <div class="card-dest">${esc(v.dest)}</div>
+    <div class="card-price">
+      <div class="price-main">$${v.precio.toLocaleString()}</div>
+      ${v.comp?`<div class="price-old">$${v.comp.toLocaleString()}</div><div class="price-save">Ahorras ${save}%</div>`:''}
+    </div>
+  </div>
+  <div class="card-meta"><span>📅 ${esc(v.fechas||'')}</span><span>⏱️ ${esc(v.duracion||'')}</span></div>
+  <div class="card-tags"><span class="tag ${alcColor}">${alcLabel}</span>${v.alcance==='local'?'<span class="tag t-eco">🌱 Eco</span>':''}</div>
+  <button class="btn-share-full" onclick="shareFullInfo(${v.id})">📋 Copiar toda la info — listo para WhatsApp/IG</button>
+  <div style="display:flex;gap:.4rem;padding:.4rem 1.1rem;border-top:1px solid var(--border);">
+    <button class="btn-share-full" style="flex:1;background:var(--sage);" onclick="shareFullInfo(${v.id})">📋 Copiar info completa</button>
+    <button class="btn-share-full" style="flex:1;background:linear-gradient(135deg,#4285f4,#34a853);" onclick="openAI(${v.id})">🤖 Generar copy IA</button>
+  </div>
+  <div id="ai-panel-${v.id}" style="display:none;padding:.6rem 1.1rem;border-top:1px solid var(--border);background:#f8fbff;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+      <span style="font-size:.75rem;font-weight:600;color:var(--ocean);">🤖 Gemini — Generar 3 versiones de copy</span>
+      <button class="ai-gen-btn" onclick="generateCopy(${v.id},'ai-${v.id}-results')">✨ Generar</button>
+    </div>
+    <div id="ai-${v.id}-results" class="ai-variants"></div>
+  </div>
+  <div class="acc"><button class="acc-btn" onclick="tog(this)">📱 Copy Instagram base <span class="chev">▼</span></button>
+    <div class="acc-body">
+      <div class="ig-box" id="${igId}">${esc(v.ig||'— Sin copy base. Usa el botón IA para generar. —')}<button class="ig-copy" onclick="copyIG('${igId}')">Copiar</button></div>
+    </div></div>
+  <div class="acc"><button class="acc-btn" onclick="tog(this)">🗺️ Itinerario <span class="chev">▼</span></button>
+    <div class="acc-body"><ul class="itinerary">${itHtml||'<li><span class="it-t">—</span><span class="it-x">Itinerario por definir</span></li>'}</ul></div></div>
+  <div class="acc"><button class="acc-btn" onclick="tog(this)">✅ Incluye / No incluye <span class="chev">▼</span></button>
+    <div class="acc-body"><div class="two-col">
+      <div class="inc-section"><h4>Incluye</h4><ul class="inc-list">${incHtml||'<li>Ver detalles</li>'}</ul></div>
+      <div class="inc-section"><h4>No incluye</h4><ul class="inc-list exc-list">${excHtml||'<li>Consultar</li>'}</ul></div>
+    </div></div></div>
+  <div class="acc"><button class="acc-btn" onclick="tog(this)">💡 Recomendaciones <span class="chev">▼</span></button>
+    <div class="acc-body"><ul class="rec-list">${recHtml||'<li>Consultar con el guía</li>'}</ul></div></div>
+  <div class="card-foot"><span class="cf-comp">Nómadas Tours 2026</span><span class="cf-trend ${v.trendC||'tr-up'}">${v.trend||''}</span></div>
+  <div class="card-edit-btns">
+    <button class="edit-btn edit" onclick="editViaje(${v.id})">✏️ Editar</button>
+    <button class="edit-btn del" onclick="deleteViaje(${v.id})">🗑️ Quitar</button>
+  </div>
+</div>`;
+}
+
+// ════════════════ FILTROS ════════════════
+let fMesA='todos', fAlcA=null, fQ='';
+function fMes(m,btn){fMesA=m;fAlcA=null;fQ='';document.querySelector('.csearch').value='';document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');applyF();}
+function fAlc(a,btn){
+  fAlcA=fAlcA===a?null:a;
+  const monthWords=['todos','mayo','junio','julio','agosto','sep','oct','nov','dic'];
+  document.querySelectorAll('.cbtn').forEach(b=>{
+    const t=b.textContent.trim().toLowerCase();
+    if(!monthWords.some(w=>t.includes(w))) b.classList.remove('on');
+  });
+  if(fAlcA)btn.classList.add('on');
+  applyF();
+}
+function fSearch(q){fQ=q.toLowerCase();applyF();}
+function applyF(){
+  let n=0;
+  document.querySelectorAll('.card').forEach(c=>{
+    const ok=(fMesA==='todos'||c.dataset.mes===fMesA)&&(!fAlcA||c.dataset.alcance===fAlcA)&&(!fQ||c.dataset.dest.includes(fQ));
+    c.classList.toggle('hidden',!ok);
+    if(ok)n++;
+  });
+  ['mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'].forEach(m=>{
+    const sec=document.getElementById('cat-'+m);
+    if(!sec) return;
+    const visibles=sec.querySelectorAll('.card:not(.hidden)').length;
+    // Always show the section header+button if month matches filter or 'todos'
+    const monthMatch=(fMesA==='todos'||fMesA===m);
+    sec.style.display=(visibles>0||monthMatch)?'block':'none';
+  });
+  document.getElementById('sTotal').textContent=n;
+}
+function updateStats(){
+  const precios=VIAJES.map(v=>v.precio);
+  document.getElementById('sTotal').textContent=VIAJES.length;
+  document.getElementById('sMin').textContent='$'+Math.min(...precios).toLocaleString();
+  document.getElementById('sMax').textContent='$'+Math.max(...precios).toLocaleString();
+  document.getElementById('sLocal').textContent=VIAJES.filter(v=>v.alcance==='local').length;
+}
+
+// ════════════════ EDITOR ════════════════
+function renderEditorList(){
+  document.getElementById('editCount').textContent=VIAJES.length;
+  const div=document.getElementById('editorList');
+  div.innerHTML=VIAJES.map(v=>`
+    <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;">
+      <div>
+        <div style="font-weight:600;font-size:.88rem;">${esc(v.dest)}</div>
+        <div style="font-size:.72rem;color:var(--muted);">${v.mes} · ${v.alcance} · $${v.precio.toLocaleString()}</div>
+      </div>
+      <div style="display:flex;gap:.4rem;">
+        <button class="edit-btn edit" onclick="editViaje(${v.id})">✏️ Editar</button>
+        <button class="edit-btn del" onclick="deleteViaje(${v.id})">🗑️ Quitar</button>
+      </div>
+    </div>`).join('');
+}
+
+function saveViaje(){
+  const dest=document.getElementById('fDest').value.trim();
+  const precio=parseInt(document.getElementById('fPrecio').value);
+  if(!dest||!precio){toast('⚠️ Destino y precio son obligatorios');return;}
+  const editId=document.getElementById('editId').value;
+  const newViaje={
+    id:editId?parseInt(editId):Date.now(),
+    mes:document.getElementById('fMes').value,
+    dest,
+    alcance:document.getElementById('fAlcance').value,
+    fechas:document.getElementById('fFechas').value,
+    duracion:document.getElementById('fDur').value,
+    precio,
+    comp:parseInt(document.getElementById('fComp').value)||0,
+    trend:document.getElementById('fTrend').value||'✅ Nuevo',
+    trendC:'tr-up',
+    ig:document.getElementById('fIG').value,
+    itinerario:document.getElementById('fItinerario').value.split('\n').filter(l=>l.trim()).map(l=>{const p=l.indexOf('—');return p>-1?{t:l.slice(0,p).trim(),x:l.slice(p+1).trim()}:{t:'',x:l.trim()};}),
+    incluye:document.getElementById('fIncluye').value.split('\n').filter(l=>l.trim()),
+    noIncluye:document.getElementById('fNoIncluye').value.split('\n').filter(l=>l.trim()),
+    recs:document.getElementById('fRecs').value.split('\n').filter(l=>l.trim()),
+  };
+  if(editId){const idx=VIAJES.findIndex(v=>v.id===parseInt(editId));if(idx>-1)VIAJES[idx]=newViaje;}
+  else VIAJES.push(newViaje);
+  clearForm();
+  renderCatalogo();
+  toast(editId?'✅ Viaje actualizado':'✅ Viaje agregado');
+}
+
+function clearForm(){
+  document.getElementById('editId').value='';
+  document.getElementById('editorTitle').textContent='➕ Agregar nuevo viaje';
+  ['fDest','fFechas','fDur','fPrecio','fComp','fTrend','fIG','fItinerario','fIncluye','fNoIncluye','fRecs'].forEach(id=>{document.getElementById(id).value='';});
+  document.getElementById('fMes').value='mayo';
+  document.getElementById('fAlcance').value='local';
+}
+
+function editViaje(id){
+  const v=VIAJES.find(x=>x.id===id);if(!v)return;
+  switchTab('editor',document.querySelectorAll('.tab')[1]);
+  document.getElementById('editId').value=v.id;
+  document.getElementById('editorTitle').textContent='✏️ Editando: '+v.dest;
+  document.getElementById('fDest').value=v.dest;
+  document.getElementById('fMes').value=v.mes;
+  document.getElementById('fFechas').value=v.fechas||'';
+  document.getElementById('fDur').value=v.duracion||'';
+  document.getElementById('fPrecio').value=v.precio;
+  document.getElementById('fComp').value=v.comp||'';
+  document.getElementById('fAlcance').value=v.alcance;
+  document.getElementById('fTrend').value=v.trend||'';
+  document.getElementById('fIG').value=v.ig||'';
+  document.getElementById('fItinerario').value=(v.itinerario||[]).map(r=>r.t?`${r.t} — ${r.x}`:r.x).join('\n');
+  document.getElementById('fIncluye').value=(v.incluye||[]).join('\n');
+  document.getElementById('fNoIncluye').value=(v.noIncluye||[]).join('\n');
+  document.getElementById('fRecs').value=(v.recs||[]).join('\n');
+  document.querySelector('.editor-panel').scrollIntoView({behavior:'smooth'});
+}
+
+function deleteViaje(id){
+  if(!confirm('¿Eliminar este viaje del catálogo?'))return;
+  VIAJES=VIAJES.filter(v=>v.id!==id);
+  renderCatalogo();
+  toast('🗑️ Viaje eliminado');
+}
+
+function closeModal(){document.getElementById('editModal').classList.remove('open');}
+
+// ════════════════ COMPETENCIA ════════════════
+function renderComp(){
+  document.getElementById('compGrid').innerHTML=COMPETENCIA.map(a=>`
+    <div class="comp-agency">
+      <div class="comp-head">
+        <div class="comp-logo" style="background:${a.color}">${a.emoji}</div>
+        <div><div class="comp-name">${a.nombre}</div><div class="comp-handle">${a.handle} · ${a.contacto}</div></div>
+      </div>
+      <div class="comp-tours">
+        ${a.tours.map(t=>`<div class="comp-tour-row">
+          <span class="comp-tour-name">${esc(t.n)}</span>
+          <span class="comp-tour-price">${t.p}</span>
+          <span class="comp-tour-date">${t.f}</span>
+        </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+
+// ════════ OPEN AI PANEL PER CARD ════════
+function openAI(id){
+  const panel = document.getElementById(`ai-panel-${id}`);
+  if(!panel) return;
+  panel.style.display = panel.style.display==='none' ? 'block' : 'none';
+}
+
+// ════════ AI TRIP GENERATOR FROM DESTINATION NAME ════════
+async function generateTripFromNameFull(){
+  document.getElementById('fAlcance').value = document.getElementById('fAlcanceAuto')?.value || 'local';
+  return generateTripFromName();
+}
+async function generateTripFromName(){
+  const destInput = document.getElementById('autoDestName').value.trim();
+  if(!destInput){ toast('⚠️ Escribe el nombre del destino primero'); return; }
+  if(!GEMINI_KEY){ toast('⚠️ Guarda tu API key de Gemini primero'); return; }
+
+  const btn = document.getElementById('autoGenBtn');
+  const status = document.getElementById('autoGenStatus');
+  const preview = document.getElementById('autoGenPreview');
+
+  btn.disabled=true; btn.textContent='⏳ Buscando y generando…';
+  status.textContent='🔍 Consultando Gemini con búsqueda web sobre el destino…';
+  preview.style.display='none';
+
+  const mes = document.getElementById('fMes').value;
+  const alcance = document.getElementById('fAlcanceAuto')?.value || document.getElementById('fAlcance').value;
+
+  const prompt = `Eres un experto en turismo mexicano que opera desde Tuxtla Gutiérrez, Chiapas. 
+El usuario quiere crear un paquete de tour al destino: "${destInput}"
+Mes del viaje: ${mes} 2026
+Tipo de alcance: ${alcance}
+
+Basándote en tu conocimiento sobre este destino, genera la información COMPLETA para un tour grupal saliendo de Tuxtla Gutiérrez. 
+
+Responde ÚNICAMENTE con JSON válido (sin markdown, sin bloques de código), con esta estructura exacta:
+{
+  "dest": "nombre oficial completo del destino",
+  "duracion": "X días / Y noche(s)",
+  "fechas": "fechas sugeridas en ${mes}",
+  "precio": número entero en pesos MXN (precio competitivo por persona para grupo desde Tuxtla),
+  "comp": número entero (precio de la competencia, 10-15% mayor),
+  "trend": "emoji + descripción corta de la tendencia turística",
+  "ig": "copy para Instagram de 150-200 palabras con emojis, menciona el precio, las fechas, hashtags relevantes (#NómadasTours #Chiapas etc) y CTA de reserva por WhatsApp",
+  "itinerario": [
+    {"t": "hora o Día X", "x": "descripción detallada de la actividad"},
+    ...al menos 6 paradas...
+  ],
+  "incluye": ["item 1", "item 2", ...al menos 5 items...],
+  "noIncluye": ["item 1", "item 2", ...al menos 3 items...],
+  "recs": ["recomendación 1", "recomendación 2", ...al menos 4 recomendaciones específicas de este destino...]
+}
+
+El precio debe ser realista para un grupo saliendo de Tuxtla, considerando distancia y tipo de actividad. Para destinos en Chiapas: $800-$2,500. Para destinos nacionales: $2,000-$5,000. Para internacionales: $4,000-$9,000.`;
+
+  try {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
+    const res = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        contents:[{parts:[{text:prompt}]}],
+        generationConfig:{maxOutputTokens:3000,temperature:0.4},
+        tools:[{googleSearch:{}}]
+      })});
+    if(!res.ok){
+      const err=await res.json();
+      // If search tool not available, retry without it
+      if(err.error?.message?.includes('googleSearch') || err.error?.code===400){
+        throw {retry:true};
+      }
+      throw new Error(err.error?.message||`Error ${res.status}`);
+    }
+    const data = await res.json();
+    const raw = data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
+    return processGeneratedTrip(raw, destInput, mes, alcance, btn, status, preview);
+  } catch(err){
+    if(err.retry){
+      // Retry without search grounding
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
+        const res2 = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:3000,temperature:0.4}})});
+        const data2 = await res2.json();
+        const raw2 = data2.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
+        return processGeneratedTrip(raw2, destInput, mes, alcance, btn, status, preview);
+      } catch(e2){
+        status.textContent='⚠️ Error: '+e2.message;
+        btn.disabled=false; btn.textContent='🔍 Generar viaje automático';
+      }
+    } else {
+      status.textContent='⚠️ Error: '+err.message;
+      btn.disabled=false; btn.textContent='🔍 Generar viaje automático';
+    }
+  }
+}
+
+function processGeneratedTrip(raw, destInput, mes, alcance, btn, status, preview){
+  const clean = raw.replace(/```json|```/g,'').trim();
+  // Extract JSON even if there's surrounding text
+  const jsonMatch = clean.match(/\{[\s\S]*\}/);
+  if(!jsonMatch) throw new Error('No se pudo parsear la respuesta de Gemini');
+  const parsed = JSON.parse(jsonMatch[0]);
+
+  // Fill the form
+  document.getElementById('fDest').value = parsed.dest || destInput;
+  document.getElementById('fFechas').value = parsed.fechas || '';
+  document.getElementById('fDur').value = parsed.duracion || '';
+  document.getElementById('fPrecio').value = parsed.precio || '';
+  document.getElementById('fComp').value = parsed.comp || '';
+  document.getElementById('fTrend').value = parsed.trend || '✅ Generado con IA';
+  document.getElementById('fIG').value = parsed.ig || '';
+  document.getElementById('fAlcance').value = alcance;
+  document.getElementById('fItinerario').value = (parsed.itinerario||[]).map(r=>r.t?`${r.t} — ${r.x}`:r.x).join('\n');
+  document.getElementById('fIncluye').value = (parsed.incluye||[]).join('\n');
+  document.getElementById('fNoIncluye').value = (parsed.noIncluye||[]).join('\n');
+  document.getElementById('fRecs').value = (parsed.recs||[]).join('\n');
+
+  // Show preview card
+  preview.style.display='block';
+  preview.innerHTML = `
+    <div style="background:#fff;border:2px solid var(--sage);border-radius:12px;padding:1rem;margin-top:.8rem;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem;">
+        <div>
+          <div style="font-weight:700;font-size:.95rem;">${parsed.dest||destInput}</div>
+          <div style="font-size:.75rem;color:var(--muted);">${parsed.fechas||''} · ${parsed.duracion||''}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--terra);">$${(parsed.precio||0).toLocaleString()}</div>
+          <div style="font-size:.65rem;color:var(--sage);">Generado con IA ✨</div>
+        </div>
+      </div>
+      <div style="font-size:.75rem;color:#333;line-height:1.5;margin-bottom:.7rem;background:var(--cream);padding:.5rem;border-radius:6px;max-height:80px;overflow:hidden;">${(parsed.ig||'').slice(0,200)}…</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span style="font-size:.68rem;background:var(--sage-l);color:var(--sage);padding:2px 10px;border-radius:20px;">✅ ${(parsed.incluye||[]).length} elementos incluidos</span>
+        <span style="font-size:.68rem;background:var(--ocean-l);color:var(--ocean);padding:2px 10px;border-radius:20px;">🗺️ ${(parsed.itinerario||[]).length} paradas en itinerario</span>
+        <span style="font-size:.68rem;background:var(--terra-l);color:var(--terra);padding:2px 10px;border-radius:20px;">💡 ${(parsed.recs||[]).length} recomendaciones</span>
+      </div>
+      <div style="margin-top:.7rem;font-size:.75rem;color:var(--sage);font-weight:600;">✅ Formulario llenado automáticamente — revisa y ajusta si es necesario, luego haz clic en "Guardar viaje"</div>
+    </div>`;
+
+  status.textContent = `✅ ¡Listo! Se generó el viaje a "${parsed.dest||destInput}". Revisa el formulario y guarda.`;
+  btn.disabled=false; btn.textContent='🔍 Generar otro';
+  toast('✅ Viaje generado — revisa el formulario y guarda');
+  // Scroll to form
+  document.getElementById('fDest').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// ════════════════ TABS ════════════════
+function switchTab(name,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(`panel-${name}`).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ════════════════ UTILS ════════════════
+function tog(btn){btn.classList.toggle('open');btn.nextElementSibling.classList.toggle('open');}
+function copyIG(id){const el=document.getElementById(id);const text=el.innerText.replace('Copiar','').trim();navigator.clipboard.writeText(text).then(()=>toast('📋 ¡Copy copiado!'));}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+function expCSV(){
+  const rows=[['Mes','Destino','Alcance','Fechas','Duración','Precio','Competencia','Tendencia']];
+  VIAJES.forEach(v=>rows.push([v.mes,v.dest,v.alcance,v.fechas||'',v.duracion||'',v.precio,v.comp||'',v.trend||'']));
+  const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  dl(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'nomadas_2026.csv');
+}
+function expJSON(){dl(new Blob([JSON.stringify(VIAJES,null,2)],{type:'application/json'}),'nomadas_2026.json');}
+function dl(b,n){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();}
+
+
+// ════════════════ SHARE FULL INFO ════════════════
+function shareFullInfo(id){
+  const v = VIAJES.find(x=>x.id===id);
+  if(!v) return;
+  const it = (v.itinerario||[]).map(r=>r.t?`  ${r.t} — ${r.x}`:(`  ${r.x}`)).join('\n');
+  const inc = (v.incluye||[]).map(x=>`  ✅ ${x}`).join('\n');
+  const exc = (v.noIncluye||[]).map(x=>`  ❌ ${x}`).join('\n');
+  const rec = (v.recs||[]).map(x=>`  💡 ${x}`).join('\n');
+  const alcLabel = v.alcance==='local'?'Chiapas':v.alcance==='nacional'?'Nacional':'Internacional';
+  const text = [
+    '═══════════════════════════════',
+    `✈️  NÓMADAS TOURS — ${v.dest.toUpperCase()}`,
+    '═══════════════════════════════',
+    ``,
+    `📍 Destino: ${v.dest}`,
+    `📅 Fechas: ${v.fechas||'Por confirmar'}`,
+    `⏱️  Duración: ${v.duracion||'Por confirmar'}`,
+    `🌎 Tipo: ${alcLabel}`,
+    `💰 Precio: $${v.precio.toLocaleString()} por persona`,
+    v.comp ? `📊 Precio competencia: $${v.comp.toLocaleString()}` : '',
+    ``,
+    `🗺️  ITINERARIO`,
+    '───────────────────────────────',
+    it||'  Por definir',
+    ``,
+    `✅ QUÉ INCLUYE`,
+    '───────────────────────────────',
+    inc||'  Consultar',
+    ``,
+    `❌ QUÉ NO INCLUYE`,
+    '───────────────────────────────',
+    exc||'  Consultar',
+    ``,
+    `💡 RECOMENDACIONES`,
+    '───────────────────────────────',
+    rec||'  Consultar con el guía',
+    ``,
+    `📲 RESERVAS Y MÁS INFO`,
+    '───────────────────────────────',
+    `  WhatsApp: [tu número]`,
+    `  Instagram: @nomadastours`,
+    ``,
+    `  Cupo limitado · Aparta con anticipo`,
+    '═══════════════════════════════',
+  ].filter(l=>l!==undefined).join('\n');
+  navigator.clipboard.writeText(text).then(()=>toast('📋 Info completa copiada — lista para WhatsApp o Instagram'));
+}
+
+// ════════════════ AI COPY GENERATOR (GEMINI) ════════════════
+let GEMINI_KEY = localStorage.getItem('nomadas_gemini_key')||'';
+
+function saveGeminiKey(){
+  GEMINI_KEY = document.getElementById('geminiKey').value.trim();
+  localStorage.setItem('nomadas_gemini_key', GEMINI_KEY);
+  const st = document.getElementById('geminiStatus');
+  if(GEMINI_KEY){ st.textContent='✅ Key guardada'; setTimeout(()=>st.textContent='',2500); }
+}
+
+async function generateCopy(viajeId, resultsId){
+  if(!GEMINI_KEY){ toast('⚠️ Guarda tu API key de Gemini primero (pestaña Editor)'); return; }
+  const v = VIAJES.find(x=>x.id===viajeId);
+  if(!v) return;
+  const resultsDiv = document.getElementById(resultsId);
+  const btn = resultsDiv.previousElementSibling.querySelector('.ai-gen-btn');
+  btn.disabled = true; btn.textContent = '⏳ Generando…';
+  resultsDiv.innerHTML = '<div class="ai-error">⏳ Consultando Gemini…</div>';
+  const prompt = `Eres un experto en marketing de turismo de aventura. Genera exactamente 3 versiones de copy para Instagram para este tour:
+
+DESTINO: ${v.dest}
+PRECIO: $${v.precio.toLocaleString()} MXN por persona
+FECHAS: ${v.fechas||'Consultar'}
+DURACIÓN: ${v.duracion||'Consultar'}
+TIPO: ${v.alcance==='local'?'Chiapas':v.alcance==='nacional'?'Nacional':'Internacional'}
+INCLUYE: ${(v.incluye||[]).join(', ')}
+DESCRIPCIÓN BASE: ${v.ig||v.dest}
+
+Genera 3 versiones:
+1. EMOCIONAL: Tono inspiracional, evoca sentimientos, usa emojis, termina con CTA de urgencia
+2. INFORMATIVO: Datos concretos, precio, fechas, incluye, profesional y claro
+3. ENTRETENIDO: Humor ligero, coloquial, como hablarle a un amigo, joven y dinámico
+
+Responde SOLO en este formato JSON (sin markdown):
+{"emocional":"...","informativo":"...","entretenido":"..."}
+
+Cada texto debe incluir hashtags relevantes (#NómadasTours #Chiapas etc), el precio y cómo reservar por WhatsApp. Máximo 220 palabras cada uno.`;
+
+  try {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
+    const res = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:2000,temperature:0.8}})});
+    if(!res.ok){const e=await res.json();throw new Error(e.error?.message||`Error ${res.status}`);}
+    const data = await res.json();
+    const raw = data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
+    const clean = raw.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(clean);
+    const variants = [
+      {label:'💖 Emocional',key:'emocional',color:'#e74c3c'},
+      {label:'📊 Informativo',key:'informativo',color:'#2980b9'},
+      {label:'😄 Entretenido',key:'entretenido',color:'#27ae60'},
+    ];
+    resultsDiv.innerHTML = variants.map((vr,i)=>`
+      <div class="ai-variant" id="${resultsId}-v${i}">
+        <div class="ai-variant-label" style="color:${vr.color}">${vr.label}</div>
+        ${parsed[vr.key]||'Error generando esta versión'}
+        <button class="ai-copy-v" style="background:${vr.color}" onclick="copyAIVariant('${resultsId}-v${i}','${vr.label}')">Copiar</button>
+      </div>`).join('');
+  } catch(err) {
+    resultsDiv.innerHTML = `<div class="ai-error">⚠️ Error: ${err.message}. Verifica que tu key de Gemini esté activa.</div>`;
+  }
+  btn.disabled=false; btn.textContent='✨ Generar 3 versiones';
+}
+
+function copyAIVariant(elId, label){
+  const el = document.getElementById(elId);
+  const text = el.innerText.replace(label,'').replace('Copiar','').trim();
+  navigator.clipboard.writeText(text).then(()=>toast(`📋 Copy "${label}" copiado`));
+}
+
+// ════════════════ QUICK ADD TO MONTH ════════════════
+function quickAddToMonth(mes){
+  switchTab('editor', document.querySelectorAll('.tab')[1]);
+  clearForm();
+  document.getElementById('fMes').value = mes;
+  document.getElementById('editorTitle').textContent = '➕ Agregar viaje a ' + mes.charAt(0).toUpperCase() + mes.slice(1);
+  document.querySelector('.editor-panel').scrollIntoView({behavior:'smooth'});
+  toast('📅 Mes preseleccionado: ' + mes);
+}
+
+
+// ════════════════════════════════════════════════════════════
+// BIBLIOTECA DE VIAJES — Inventario maestro separado
+// ════════════════════════════════════════════════════════════
+const STORAGE_BIB = 'nomadas_biblioteca_v2';
+let BIBLIOTECA = [];
+let bibFilterActive = 'todos';
+
+function loadBiblioteca() {
+  try {
+    const saved = localStorage.getItem(STORAGE_BIB);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      BIBLIOTECA = Array.isArray(parsed) ? parsed : [];
+      console.log('[Biblioteca] Loaded', BIBLIOTECA.length, 'viajes');
+    }
+  } catch(e) { console.error('loadBiblioteca error:', e); BIBLIOTECA = []; }
+}
+
+function saveBiblioteca() {
+  try {
+    localStorage.setItem(STORAGE_BIB, JSON.stringify(BIBLIOTECA));
+    console.log('[Biblioteca] Saved', BIBLIOTECA.length, 'viajes');
+  } catch(e) { console.error('saveBiblioteca error:', e); }
+}
+
+function renderBiblioteca() {
+  const grid = document.getElementById('bibliotecaGrid');
+  const countEl = document.getElementById('bibCount');
+  if (!grid) return;
+  const q = (document.getElementById('bibSearch')?.value || '').toLowerCase().trim();
+  const filtered = BIBLIOTECA.filter(v => {
+    const matchQ = !q || v.dest.toLowerCase().includes(q) || (v.mes||'').toLowerCase().includes(q) || (v.alcance||'').includes(q);
+    const matchF = bibFilterActive === 'todos' || v.alcance === bibFilterActive;
+    return matchQ && matchF;
+  });
+  if (countEl) countEl.textContent = filtered.length + ' de ' + BIBLIOTECA.length + ' viajes registrados';
+  if (!filtered.length) {
+    const msg = BIBLIOTECA.length
+      ? 'Sin resultados. Prueba con otra búsqueda.'
+      : '📭 La biblioteca está vacía. Ve a "Agregar / Editar" y guarda viajes aquí, o agrégalos directo desde este panel.';
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.88rem;">' + msg + '</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map((v, i) => buildBibCard(v, i)).join('');
+}
+
+function buildBibCard(v, i) {
+  const alcClass = {'local':'local','nacional':'nacional','internacional':'internacional'}[v.alcance] || 'local';
+  const alcLabel = {'local':'🌿 Chiapas','nacional':'🇲🇽 Nacional','internacional':'✈️ Internacional'}[v.alcance] || '🌿';
+  const safeId = String(v.id).replace(/\./g,'_');
+  return '<div class="bib-card" id="bibcard-' + safeId + '">' +
+    '<div class="bib-actions">' +
+      '<button class="bib-action-btn edit" onclick="editBibViaje(\'' + v.id + '\');event.stopPropagation();" title="Editar">✏️</button>' +
+      '<button class="bib-action-btn del" onclick="deleteBibViaje(\'' + v.id + '\');event.stopPropagation();" title="Eliminar">🗑️</button>' +
+    '</div>' +
+    '<div class="bib-card-name">' + esc(v.dest) + '</div>' +
+    '<div class="bib-card-meta">' +
+      '<span class="bib-badge ' + alcClass + '">' + alcLabel + '</span>' +
+      (v.duracion ? ' <span>⏱️ ' + esc(v.duracion) + '</span>' : '') +
+    '</div>' +
+    '<div class="bib-card-price">' + (v.precio ? '$' + Number(v.precio).toLocaleString() : '—') + '</div>' +
+    '<button class="use-from-bib-btn" onclick="useInCalendar(\'' + v.id + '\')">➕ Usar en calendario</button>' +
+  '</div>';
+}
+
+function bibFilter(type, btn) {
+  bibFilterActive = type;
+  document.querySelectorAll('#panel-biblioteca .cbtn').forEach(b => b.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  renderBiblioteca();
+}
+
+function newBibViajeForm() {
+  switchTab('editor', document.querySelectorAll('.tab')[2]);
+  clearForm();
+  document.getElementById('editorTitle').textContent = '➕ Nuevo viaje';
+  document.getElementById('bibSaveMode').value = 'biblioteca';
+  document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth' });
+  updateEditorModeUI();
+}
+
+function editBibViaje(id) {
+  const v = BIBLIOTECA.find(x => String(x.id) === String(id));
+  if (!v) { toast('⚠️ Viaje no encontrado'); return; }
+  switchTab('editor', document.querySelectorAll('.tab')[2]);
+  document.getElementById('editId').value = 'bib_' + v.id;
+  document.getElementById('editorTitle').textContent = '✏️ Editando biblioteca: ' + v.dest;
+  document.getElementById('bibSaveMode').value = 'biblioteca';
+  fillFormFromViaje(v);
+  updateEditorModeUI();
+  document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteBibViaje(id) {
+  const v = BIBLIOTECA.find(x => String(x.id) === String(id));
+  if (!v) return;
+  if (!confirm('¿Eliminar "' + v.dest + '" de la biblioteca?\n\nEsto NO afecta al catálogo/calendario.')) return;
+  BIBLIOTECA = BIBLIOTECA.filter(x => String(x.id) !== String(id));
+  saveBiblioteca();
+  renderBiblioteca();
+  updateBibSelectDrop();
+  toast('🗑️ Eliminado de la biblioteca');
+}
+
+function useInCalendar(id) {
+  const v = BIBLIOTECA.find(x => String(x.id) === String(id));
+  if (!v) { toast('⚠️ Viaje no encontrado'); return; }
+  switchTab('editor', document.querySelectorAll('.tab')[2]);
+  document.getElementById('editId').value = '';
+  document.getElementById('editorTitle').textContent = '📅 Agregar al calendario: ' + v.dest;
+  document.getElementById('bibSaveMode').value = 'calendario';
+  fillFormFromViaje(v);
+  updateEditorModeUI();
+  document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth' });
+  toast('📋 Cargado desde biblioteca — ajusta las fechas y guarda en el calendario');
+}
+
+function fillFormFromViaje(v) {
+  document.getElementById('fDest').value = v.dest || '';
+  document.getElementById('fMes').value = v.mes || 'mayo';
+  document.getElementById('fFechas').value = v.fechas || '';
+  document.getElementById('fDur').value = v.duracion || '';
+  document.getElementById('fPrecio').value = v.precio || '';
+  document.getElementById('fComp').value = v.comp || '';
+  document.getElementById('fAlcance').value = v.alcance || 'local';
+  document.getElementById('fTrend').value = v.trend || '';
+  document.getElementById('fIG').value = v.ig || '';
+  document.getElementById('fItinerario').value = (v.itinerario||[]).map(r => r.t ? r.t + ' — ' + r.x : r.x).join('\n');
+  document.getElementById('fIncluye').value = (v.incluye||[]).join('\n');
+  document.getElementById('fNoIncluye').value = (v.noIncluye||[]).join('\n');
+  document.getElementById('fRecs').value = (v.recs||[]).join('\n');
+}
+
+function loadFromBibSelect(val) {
+  if (!val) return;
+  const v = BIBLIOTECA.find(x => String(x.id) === String(val));
+  if (!v) return;
+  document.getElementById('editId').value = '';
+  document.getElementById('editorTitle').textContent = '📅 Desde biblioteca: ' + v.dest;
+  document.getElementById('bibSaveMode').value = 'calendario';
+  fillFormFromViaje(v);
+  updateEditorModeUI();
+  toast('📋 Cargado — ajusta fechas y guarda en el calendario');
+}
+
+function clearBibSelect() {
+  const sel = document.getElementById('bibSelectDrop');
+  if (sel) sel.value = '';
+}
+
+function updateBibSelectDrop() {
+  const sel = document.getElementById('bibSelectDrop');
+  if (!sel) return;
+  const current = sel.value;
+  sel.innerHTML = '<option value="">— Seleccionar viaje de la biblioteca —</option>';
+  BIBLIOTECA.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.id;
+    opt.textContent = v.dest + (v.precio ? '  ($' + Number(v.precio).toLocaleString() + ')' : '') + '  [' + (v.alcance==='local'?'Chiapas':v.alcance==='nacional'?'Nacional':'Inter.') + ']';
+    sel.appendChild(opt);
+  });
+  if (current) sel.value = current;
+}
+
+// Update editor UI based on save mode
+function updateEditorModeUI() {
+  const mode = document.getElementById('bibSaveMode')?.value || 'biblioteca';
+  const banner = document.getElementById('editorModeBanner');
+  const saveBtn = document.getElementById('editorSaveBtn');
+  if (!banner || !saveBtn) return;
+  if (mode === 'biblioteca') {
+    banner.style.background = 'var(--sage-l)';
+    banner.style.borderColor = 'var(--sage)';
+    banner.innerHTML = '📚 <strong>Modo Biblioteca</strong> — Este viaje se guardará en tu inventario maestro. Puedes usarlo después para crear entradas en el calendario.';
+    saveBtn.textContent = '💾 Guardar en Biblioteca';
+    saveBtn.style.background = 'var(--sage)';
+  } else {
+    banner.style.background = 'var(--terra-l)';
+    banner.style.borderColor = 'var(--terra)';
+    banner.innerHTML = '📅 <strong>Modo Calendario</strong> — Este viaje se agregará al catálogo con el mes y fechas especificados.';
+    saveBtn.textContent = '📅 Agregar al Calendario';
+    saveBtn.style.background = 'var(--terra)';
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// SAVE VIAJE — Reemplaza la función original con lógica dual
+// ════════════════════════════════════════════════════════════
+function saveViaje() {
+  const dest = document.getElementById('fDest').value.trim();
+  const precio = parseInt(document.getElementById('fPrecio').value);
+  if (!dest) { toast('⚠️ El nombre del destino es obligatorio'); return; }
+  if (!precio) { toast('⚠️ El precio es obligatorio'); return; }
+
+  const editId = document.getElementById('editId').value;
+  const mode = document.getElementById('bibSaveMode')?.value || 'biblioteca';
+  const isBibEdit = editId && editId.startsWith('bib_');
+  const bibRawId = isBibEdit ? editId.replace('bib_', '') : null;
+
+  // Build the viaje object
+  const baseData = {
+    dest,
+    mes: document.getElementById('fMes').value,
+    alcance: document.getElementById('fAlcance').value,
+    fechas: document.getElementById('fFechas').value,
+    duracion: document.getElementById('fDur').value,
+    precio,
+    comp: parseInt(document.getElementById('fComp').value) || 0,
+    trend: document.getElementById('fTrend').value || '✅ Nuevo',
+    trendC: 'tr-up',
+    ig: document.getElementById('fIG').value,
+    itinerario: document.getElementById('fItinerario').value.split('\n').filter(l => l.trim()).map(l => {
+      const p = l.indexOf('—'); return p > -1 ? {t: l.slice(0, p).trim(), x: l.slice(p+1).trim()} : {t: '', x: l.trim()};
+    }),
+    incluye: document.getElementById('fIncluye').value.split('\n').filter(l => l.trim()),
+    noIncluye: document.getElementById('fNoIncluye').value.split('\n').filter(l => l.trim()),
+    recs: document.getElementById('fRecs').value.split('\n').filter(l => l.trim()),
+  };
+
+  // ── CASE 1: Editing an existing biblioteca entry ──
+  if (isBibEdit && bibRawId) {
+    const idx = BIBLIOTECA.findIndex(v => String(v.id) === String(bibRawId));
+    if (idx >= 0) {
+      BIBLIOTECA[idx] = { ...BIBLIOTECA[idx], ...baseData };
+    } else {
+      BIBLIOTECA.push({ id: bibRawId, ...baseData });
+    }
+    saveBiblioteca();
+    renderBiblioteca();
+    updateBibSelectDrop();
+    clearForm();
+    toast('✅ Viaje actualizado en la Biblioteca');
+    return;
+  }
+
+  // ── CASE 2: Save to Biblioteca only ──
+  if (mode === 'biblioteca') {
+    const bibId = Date.now() + Math.random();
+    BIBLIOTECA.push({ id: bibId, ...baseData });
+    saveBiblioteca();
+    renderBiblioteca();
+    updateBibSelectDrop();
+    clearForm();
+    toast('📚 Guardado en la Biblioteca (' + BIBLIOTECA.length + ' viajes)');
+    return;
+  }
+
+  // ── CASE 3: Add/edit in Calendar (VIAJES) ──
+  if (mode === 'calendario') {
+    const calId = editId && !isBibEdit ? parseInt(editId) : null;
+    const calViaje = { id: calId || (Date.now() + Math.random()), ...baseData };
+    if (calId) {
+      const idx = VIAJES.findIndex(v => v.id === calId);
+      if (idx >= 0) { VIAJES[idx] = calViaje; toast('✅ Viaje actualizado en el Calendario'); }
+      else { VIAJES.push(calViaje); toast('✅ Viaje agregado al Calendario'); }
+    } else {
+      VIAJES.push(calViaje);
+      toast('📅 Viaje agregado al Calendario');
+    }
+    // Also upsert in biblioteca by name
+    const bibExist = BIBLIOTECA.findIndex(v => v.dest.toLowerCase() === dest.toLowerCase());
+    if (bibExist >= 0) {
+      BIBLIOTECA[bibExist] = { ...BIBLIOTECA[bibExist], ...baseData };
+    } else {
+      BIBLIOTECA.push({ id: Date.now() + Math.random(), ...baseData });
+    }
+    saveBiblioteca();
+    saveToStorage();
+    renderCatalogo();
+    renderBiblioteca();
+    updateBibSelectDrop();
+    clearForm();
+    return;
+  }
+}
+
+function clearForm() {
+  document.getElementById('editId').value = '';
+  document.getElementById('editorTitle').textContent = '➕ Agregar nuevo viaje';
+  const bibMode = document.getElementById('bibSaveMode');
+  if (bibMode) bibMode.value = 'biblioteca';
+  clearBibSelect();
+  ['fDest','fFechas','fDur','fPrecio','fComp','fTrend','fIG','fItinerario','fIncluye','fNoIncluye','fRecs'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('fMes').value = 'mayo';
+  document.getElementById('fAlcance').value = 'local';
+  updateEditorModeUI();
+}
+
+// ════════════════════════════════════════════════════════════
+// EDIT VIAJE (calendar) — override
+// ════════════════════════════════════════════════════════════
+function editViaje(id) {
+  const v = VIAJES.find(x => x.id === id);
+  if (!v) return;
+  switchTab('editor', document.querySelectorAll('.tab')[2]);
+  document.getElementById('editId').value = id;
+  document.getElementById('editorTitle').textContent = '✏️ Editando calendario: ' + v.dest;
+  document.getElementById('bibSaveMode').value = 'calendario';
+  fillFormFromViaje(v);
+  updateEditorModeUI();
+  document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth' });
+}
+
+function quickAddToMonth(mes) {
+  switchTab('editor', document.querySelectorAll('.tab')[2]);
+  clearForm();
+  document.getElementById('fMes').value = mes;
+  document.getElementById('bibSaveMode').value = 'calendario';
+  document.getElementById('editorTitle').textContent = '📅 Nuevo viaje en ' + mes.charAt(0).toUpperCase() + mes.slice(1);
+  updateEditorModeUI();
+  document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth' });
+  toast('📅 Mes preseleccionado: ' + mes);
+}
+
+// ════════════════════════════════════════════════════════════
+// COMPETITION EXCEL IMPORT & TEMPLATE
+// ════════════════════════════════════════════════════════════
+function downloadCompTemplate() {
+  loadSheetJS(() => {
+    const wb = XLSX.utils.book_new();
+
+    // Sheet 1: Template
+    const tpl = [
+      ['PLANTILLA COMPETENCIA — Nómadas Tours', '', '', '', '', ''],
+      ['Instrucciones: Llena la sección AGENCIAS y la sección TOURS. Guarda como .xlsx antes de importar.', '', '', '', '', ''],
+      ['', '', '', '', '', ''],
+      ['=== SECCIÓN 1: AGENCIAS ===', '', '', '', '', ''],
+      ['AGENCIA', 'HANDLE', 'CONTACTO', 'COLOR_HEX', 'EMOJI', ''],
+      ['Nombre de la agencia', '@instagram', 'Tel o web', '#2ecc71', '🌿', ''],
+      ['Ejemplo Tours Chiapas', '@ejemplotours', '961 000 0000', '#e74c3c', '🏔️', ''],
+      ['', '', '', '', '', ''],
+      ['=== SECCIÓN 2: TOURS (una fila por tour) ===', '', '', '', '', ''],
+      ['AGENCIA', 'TOUR', 'PRECIO', 'FECHAS', '', ''],
+      ['Ejemplo Tours Chiapas', 'Cañón del Sumidero', '$1,200', 'Sábados de mayo', '', ''],
+      ['Ejemplo Tours Chiapas', 'Cascadas El Chiflón', '$990', 'Domingos de mayo', '', ''],
+    ];
+    const ws1 = XLSX.utils.aoa_to_sheet(tpl);
+    ws1['!cols'] = [30, 20, 18, 12, 8, 8].map(w => ({wch: w}));
+    ws1['!merges'] = [{s:{r:0,c:0},e:{r:0,c:5}}, {s:{r:1,c:0},e:{r:1,c:5}}];
+    XLSX.utils.book_append_sheet(wb, ws1, 'Plantilla');
+
+    // Sheet 2: Instructions
+    const inst = [
+      ['INSTRUCCIONES DETALLADAS'],
+      [''],
+      ['SECCIÓN 1 — AGENCIAS:'],
+      ['• AGENCIA: nombre completo de la agencia (obligatorio)'],
+      ['• HANDLE: su cuenta de Instagram (ej: @hippiestravel)'],
+      ['• CONTACTO: teléfono o sitio web'],
+      ['• COLOR_HEX: color en formato hex para la tarjeta (ej: #2ecc71)'],
+      ['• EMOJI: un emoji representativo (ej: 🌿)'],
+      [''],
+      ['SECCIÓN 2 — TOURS:'],
+      ['• AGENCIA: debe coincidir EXACTAMENTE con el nombre en la sección de agencias'],
+      ['• TOUR: nombre del tour o paquete'],
+      ['• PRECIO: precio tal como aparece (ej: $2,990 o Consultar)'],
+      ['• FECHAS: fechas o meses disponibles'],
+      [''],
+      ['AL IMPORTAR:'],
+      ['• Los datos se AGREGAN a los que ya tienes (no se borra nada)'],
+      ['• Si una agencia ya existe con el mismo nombre, se actualiza'],
+      ['• Los tours nuevos se agregan; si ya existe el mismo nombre de tour, se actualiza'],
+      ['• Puedes importar varias veces el mismo archivo sin duplicar'],
+    ];
+    const ws2 = XLSX.utils.aoa_to_sheet(inst);
+    ws2['!cols'] = [{wch: 70}];
+    XLSX.utils.book_append_sheet(wb, ws2, 'Instrucciones');
+
+    XLSX.writeFile(wb, 'plantilla_competencia_nomadas.xlsx');
+    toast('⬇️ Plantilla descargada');
+  });
+}
+
+function importCompExcel(input) {
+  const file = input.files[0];
+  if (!file) return;
+  loadSheetJS(() => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const wb = XLSX.read(e.target.result, { type: 'array' });
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+
+        const agencies = {};
+        const toursByAgency = {};
+        let inTours = false;
+
+        for (let i = 0; i < rows.length; i++) {
+          const row = rows[i];
+          const col0 = String(row[0] || '').trim();
+          if (!col0 || col0.startsWith('===') || col0.startsWith('INSTRUCCIONES') || col0.startsWith('PLANTILLA')) continue;
+
+          if (col0 === 'AGENCIA' && String(row[1]||'').trim() === 'HANDLE') { inTours = false; continue; }
+          if (col0 === 'AGENCIA' && String(row[1]||'').trim() === 'TOUR') { inTours = true; continue; }
+          if (col0.startsWith('=== SECCIÓN')) { inTours = col0.includes('2'); continue; }
+
+          if (!inTours) {
+            // Agency row
+            if (col0 && col0 !== 'Nombre de la agencia') {
+              agencies[col0] = {
+                nombre: col0,
+                handle: String(row[1]||'').trim(),
+                contacto: String(row[2]||'').trim(),
+                color: String(row[3]||'#888').trim() || '#888888',
+                emoji: String(row[4]||'🌿').trim() || '🌿',
+              };
+              toursByAgency[col0] = [];
+            }
+          } else {
+            // Tour row
+            const agName = col0;
+            const tourName = String(row[1]||'').trim();
+            if (agName && tourName && tourName !== 'TOUR') {
+              if (!toursByAgency[agName]) toursByAgency[agName] = [];
+              toursByAgency[agName].push({
+                n: tourName,
+                p: String(row[2]||'').trim(),
+                f: String(row[3]||'').trim(),
+              });
+            }
+          }
+        }
+
+        // Merge into COMPETENCIA
+        let added = 0, updated = 0;
+        Object.entries(agencies).forEach(([name, ag]) => {
+          const tours = toursByAgency[name] || [];
+          const existIdx = COMPETENCIA.findIndex(c => c.nombre.toLowerCase() === name.toLowerCase());
+          if (existIdx >= 0) {
+            const existTours = COMPETENCIA[existIdx].tours || [];
+            tours.forEach(nt => {
+              const ti = existTours.findIndex(et => et.n.toLowerCase() === nt.n.toLowerCase());
+              if (ti >= 0) existTours[ti] = nt; else existTours.push(nt);
+            });
+            COMPETENCIA[existIdx] = { ...COMPETENCIA[existIdx], ...ag, tours: existTours };
+            updated++;
+          } else {
+            COMPETENCIA.push({ ...ag, tours });
+            added++;
+          }
+        });
+
+        saveToStorage();
+        renderComp();
+        renderCompAgencySelect();
+        toast('✅ Importado: ' + added + ' agencias nuevas, ' + updated + ' actualizadas');
+      } catch(err) {
+        alert('❌ Error al leer el Excel:\n' + err.message + '\n\nUsa la plantilla descargable para asegurar el formato correcto.');
+      }
+      input.value = '';
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+
+// ════════════════════════════════════════════════
+// PERSISTENCE — localStorage
+// ════════════════════════════════════════════════
+const STORAGE_KEY = 'nomadas_viajes_v2';
+const STORAGE_COMP = 'nomadas_comp_v2';
+
+function saveToStorage() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(VIAJES));
+    localStorage.setItem(STORAGE_COMP, JSON.stringify(COMPETENCIA));
+    localStorage.setItem('nomadas_saved_at', new Date().toLocaleString('es-MX'));
+    updatePersistStatus();
+  } catch(e) { console.error('saveToStorage:', e); }
+}
+
+function loadFromStorage() {
+  let loaded = false;
+  try {
+    const sv = localStorage.getItem(STORAGE_KEY);
+    if (sv) { const p = JSON.parse(sv); if (p && p.length) { VIAJES.length=0; p.forEach(v=>VIAJES.push(v)); loaded=true; } }
+    const sc = localStorage.getItem(STORAGE_COMP);
+    if (sc) { const p = JSON.parse(sc); if (p && p.length) { COMPETENCIA.length=0; p.forEach(c=>COMPETENCIA.push(c)); loaded=true; } }
+  } catch(e) { console.error('loadFromStorage:', e); }
+  return loaded;
+}
+
+function updatePersistStatus() {
+  const savedAt = localStorage.getItem('nomadas_saved_at');
+  const el = document.getElementById('persistStatus');
+  if (!el) return;
+  el.innerHTML = savedAt
+    ? '<span style="color:#4ade80">✅ Guardado ' + savedAt + '</span> · ' + VIAJES.length + ' viajes · ' + BIBLIOTECA.length + ' biblioteca · ' + COMPETENCIA.length + ' agencias'
+    : '⚠️ Sin guardar';
+}
+
+function exportSession() {
+  const data = { viajes: VIAJES, competencia: COMPETENCIA, biblioteca: BIBLIOTECA, exportedAt: new Date().toISOString() };
+  dl(new Blob([JSON.stringify(data, null, 2)], {type:'application/json'}), 'nomadas_backup_' + new Date().toISOString().slice(0,10) + '.json');
+  toast('📥 Sesión exportada');
+}
+
+function importSession(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      const viajes = data.viajes || (Array.isArray(data) ? data : null);
+      if (!viajes) throw new Error('Formato no reconocido');
+      if (!confirm('¿Importar ' + viajes.length + ' viajes? Se reemplazarán los datos actuales.')) return;
+      VIAJES.length=0; viajes.forEach(v=>VIAJES.push(v));
+      if (data.competencia) { COMPETENCIA.length=0; data.competencia.forEach(c=>COMPETENCIA.push(c)); }
+      if (data.biblioteca) { BIBLIOTECA.length=0; data.biblioteca.forEach(b=>BIBLIOTECA.push(b)); }
+      saveToStorage(); saveBiblioteca();
+      renderCatalogo(); renderComp(); renderCompAgencySelect(); renderBiblioteca(); updateBibSelectDrop(); updatePersistStatus();
+      toast('✅ Importado: ' + viajes.length + ' viajes');
+    } catch(err) { alert('❌ Error: ' + err.message); }
+    input.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ════════════════════════════════════════════════
+// COMPETITION EDITOR
+// ════════════════════════════════════════════════
+let editingCompIdx = -1;
+
+function renderCompAgencySelect() {
+  const sel = document.getElementById('compAgencySelect'); if (!sel) return;
+  sel.innerHTML = '<option value="">— Nueva agencia —</option>';
+  COMPETENCIA.forEach((a,i) => { const o=document.createElement('option'); o.value=i; o.textContent=a.emoji+' '+a.nombre; sel.appendChild(o); });
+}
+
+function loadCompAgency(idx) {
+  if (idx==='') { clearCompForm(); return; }
+  const a = COMPETENCIA[parseInt(idx)]; if (!a) return;
+  editingCompIdx = parseInt(idx);
+  document.getElementById('compName').value = a.nombre||'';
+  document.getElementById('compHandle').value = a.handle||'';
+  document.getElementById('compContact').value = a.contacto||'';
+  document.getElementById('compColor').value = a.color||'#e74c3c';
+  document.getElementById('compEmoji').value = a.emoji||'🌿';
+  const delBtn = document.getElementById('delCompBtn');
+  if (delBtn) delBtn.style.display='inline-flex';
+  renderCompToursEditor(a.tours||[]);
+}
+
+function renderCompToursEditor(tours) {
+  const div = document.getElementById('compToursEditor'); if (!div) return;
+  const rows = tours.map((t,i) => {
+    return '<div style="display:flex;gap:.4rem;margin-bottom:.4rem;flex-wrap:wrap;">' +
+      '<input placeholder="Nombre del tour" value="' + esc(t.n||'') + '" ' +
+        'oninput="updateCT(' + i + ',\'n\',this.value)" ' +
+        'style="flex:1;min-width:120px;padding:6px 10px;border:1px solid #ddd;border-radius:8px;font-size:.78rem;font-family:inherit;">' +
+      '<input placeholder="Precio" value="' + esc(t.p||'') + '" ' +
+        'oninput="updateCT(' + i + ',\'p\',this.value)" ' +
+        'style="width:90px;padding:6px 10px;border:1px solid #ddd;border-radius:8px;font-size:.78rem;font-family:inherit;">' +
+      '<input placeholder="Fechas" value="' + esc(t.f||'') + '" ' +
+        'oninput="updateCT(' + i + ',\'f\',this.value)" ' +
+        'style="width:100px;padding:6px 10px;border:1px solid #ddd;border-radius:8px;font-size:.78rem;font-family:inherit;">' +
+      '<button onclick="removeCT(' + i + ')" style="padding:4px 8px;border-radius:20px;border:1px solid #fca5a5;background:#fee2e2;color:#dc2626;font-size:.65rem;cursor:pointer;">✕</button>' +
+    '</div>';
+  });
+  div.innerHTML = rows.join('');
+}
+
+let _ctDraft = [];
+function addCompTourRow() { _ctDraft = getCTDraft(); _ctDraft.push({n:'',p:'',f:''}); renderCompToursEditor(_ctDraft); }
+function removeCT(i) { _ctDraft = getCTDraft(); _ctDraft.splice(i,1); renderCompToursEditor(_ctDraft); }
+function updateCT(i,f,v) { _ctDraft = getCTDraft(); if(_ctDraft[i]) _ctDraft[i][f]=v; }
+function getCTDraft() {
+  const rows = document.querySelectorAll('#compToursEditor > div'); const tours=[];
+  rows.forEach(row => { const inputs=row.querySelectorAll('input'); tours.push({n:inputs[0]?.value||'',p:inputs[1]?.value||'',f:inputs[2]?.value||''}); });
+  return tours;
+}
+
+function saveCompAgency() {
+  const name = document.getElementById('compName')?.value.trim(); if (!name) { toast('⚠️ Nombre requerido'); return; }
+  const agency = { nombre:name, handle:document.getElementById('compHandle').value.trim(), contacto:document.getElementById('compContact').value.trim(), color:document.getElementById('compColor').value, emoji:document.getElementById('compEmoji').value.trim()||'🌿', tours:getCTDraft().filter(t=>t.n.trim()) };
+  if (editingCompIdx>=0) { COMPETENCIA[editingCompIdx]=agency; toast('✅ Agencia actualizada'); }
+  else { COMPETENCIA.push(agency); toast('✅ Agencia agregada'); }
+  saveToStorage(); renderComp(); renderCompAgencySelect(); clearCompForm();
+}
+
+function deleteCompAgency() {
+  if (editingCompIdx<0) return;
+  if (!confirm('¿Eliminar "'+COMPETENCIA[editingCompIdx].nombre+'"?')) return;
+  COMPETENCIA.splice(editingCompIdx,1);
+  saveToStorage(); renderComp(); renderCompAgencySelect(); clearCompForm();
+  toast('🗑️ Agencia eliminada');
+}
+
+function clearCompForm() {
+  editingCompIdx=-1; _ctDraft=[];
+  ['compName','compHandle','compContact','compEmoji'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const cc=document.getElementById('compColor'); if(cc) cc.value='#e74c3c';
+  const sel=document.getElementById('compAgencySelect'); if(sel) sel.value='';
+  const del=document.getElementById('delCompBtn'); if(del) del.style.display='none';
+  const ted=document.getElementById('compToursEditor'); if(ted) ted.innerHTML='';
+}
+
+// ════════════════════════════════════════════════
+// EXCEL EXPORT (SheetJS)
+// ════════════════════════════════════════════════
+function loadSheetJS(cb) {
+  if (window.XLSX) { cb(); return; }
+  const s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+  s.onload=cb; s.onerror=()=>toast('⚠️ Error cargando SheetJS — verifica conexión'); document.head.appendChild(s);
+}
+
+function exportCompExcel() {
+  loadSheetJS(()=>{
+    const wb = XLSX.utils.book_new();
+    // Sheet 1: Nómadas catalog
+    const cat=[['MES','DESTINO','ALCANCE','FECHAS','DURACIÓN','PRECIO','COMP.','TENDENCIA']];
+    VIAJES.forEach(v=>cat.push([v.mes,v.dest,v.alcance,v.fechas||'',v.duracion||'',v.precio,v.comp||'',v.trend||'']));
+    const ws1=XLSX.utils.aoa_to_sheet(cat); ws1['!cols']=[10,38,14,18,14,14,14,20].map(w=>({wch:w}));
+    XLSX.utils.book_append_sheet(wb,ws1,'Nómadas Tours');
+    // Sheet 2: Biblioteca
+    const bib=[['DESTINO','ALCANCE','DURACIÓN','PRECIO','COMPETENCIA','TENDENCIA']];
+    BIBLIOTECA.forEach(v=>bib.push([v.dest,v.alcance,v.duracion||'',v.precio||'',v.comp||'',v.trend||'']));
+    const ws2=XLSX.utils.aoa_to_sheet(bib); ws2['!cols']=[38,14,14,14,14,20].map(w=>({wch:w}));
+    XLSX.utils.book_append_sheet(wb,ws2,'Biblioteca');
+    // Sheet 3: Competition
+    const comp=[['AGENCIA','HANDLE','CONTACTO','TOUR','PRECIO','FECHAS']];
+    COMPETENCIA.forEach(a=>(a.tours||[]).forEach((t,ti)=>comp.push([ti===0?a.nombre:'',ti===0?(a.handle||''):'',ti===0?(a.contacto||''):'',t.n,t.p,t.f])));
+    const ws3=XLSX.utils.aoa_to_sheet(comp); ws3['!cols']=[28,20,18,38,12,14].map(w=>({wch:w}));
+    XLSX.utils.book_append_sheet(wb,ws3,'Competencia');
+    // Sheet 4: Price comparison
+    const cmp=[['DESTINO','PRECIO NÓMADAS','PRECIO COMP.','AHORRO $','AHORRO %']];
+    VIAJES.filter(v=>v.comp).forEach(v=>{const d=v.comp-v.precio;cmp.push([v.dest,'$'+v.precio.toLocaleString(),'$'+v.comp.toLocaleString(),'+$'+d.toLocaleString(),Math.round(d/v.comp*100)+'%']);});
+    const ws4=XLSX.utils.aoa_to_sheet(cmp); ws4['!cols']=[38,16,16,14,12].map(w=>({wch:w}));
+    XLSX.utils.book_append_sheet(wb,ws4,'Comparativa');
+    XLSX.writeFile(wb,'nomadas_tours_'+new Date().toISOString().slice(0,10)+'.xlsx');
+    toast('📊 Excel exportado con 4 hojas');
+  });
+}
+
+function exportCompCSV() {
+  const rows=[['Agencia','Handle','Contacto','Tour','Precio','Fechas']];
+  COMPETENCIA.forEach(a=>(a.tours||[]).forEach((t,ti)=>rows.push([ti===0?a.nombre:'',ti===0?(a.handle||''):'',ti===0?(a.contacto||''):'',t.n,t.p,t.f])));
+  const csv=rows.map(r=>r.map(c=>'"'+String(c||'').replace(/"/g,'""')+'"').join(',')).join('\n');
+  dl(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'competencia.csv');
+  toast('📄 CSV exportado');
+}
+
+// Init
+loadFromStorage();
+renderCatalogo();
+renderComp();
+renderCompAgencySelect();
+loadBiblioteca();
+renderBiblioteca();
+updateBibSelectDrop();
+updatePersistStatus();
+// Restore Gemini key
+(function(){
+  const el = document.getElementById('geminiKey');
+  if(el && GEMINI_KEY) el.value = GEMINI_KEY;
+  // Set default save mode
+  updateEditorModeUI();
+})();
+// Auto-save every 90 seconds
+setInterval(function(){ saveToStorage(); saveBiblioteca(); }, 90000);
+</script>
+</body>
+</html>
