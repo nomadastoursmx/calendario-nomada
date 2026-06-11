@@ -123,6 +123,36 @@ body{background:var(--cream);color:var(--ink);font-family:'Plus Jakarta Sans',sa
 .comp-tour-name{flex:1;color:#333;}
 .comp-tour-price{font-weight:600;color:var(--terra);white-space:nowrap;margin-left:.5rem;}
 .comp-tour-date{font-size:.68rem;color:var(--muted);white-space:nowrap;margin-left:.4rem;}
+/* ══ AI CONSULTANT ══ */
+.ai-consult-panel{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);border-radius:var(--r);padding:1.4rem 1.6rem;margin-bottom:1.2rem;border:1px solid #2d4a6b;color:#fff;}
+.ai-consult-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;}
+.ai-consult-icon{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#4285f4,#34a853);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.ai-consult-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.2;}
+.ai-consult-sub{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:2px;}
+.ai-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.8rem;}
+.ai-chip{padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);font-size:.72rem;font-family:inherit;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.ai-chip:hover{background:rgba(66,133,244,.3);border-color:#4285f4;color:#fff;}
+.ai-chip.active{background:linear-gradient(135deg,#4285f4,#34a853);border-color:transparent;color:#fff;}
+.ai-input-row{display:flex;gap:.5rem;margin-bottom:.8rem;}
+.ai-consult-input{flex:1;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:.82rem;font-family:inherit;outline:none;transition:border-color .2s;}
+.ai-consult-input::placeholder{color:rgba(255,255,255,.35);}
+.ai-consult-input:focus{border-color:#4285f4;}
+.ai-consult-btn{padding:10px 20px;border-radius:10px;border:none;background:linear-gradient(135deg,#4285f4,#34a853);color:#fff;font-size:.8rem;font-family:inherit;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .2s;}
+.ai-consult-btn:hover{opacity:.85;}
+.ai-consult-btn:disabled{opacity:.45;cursor:wait;}
+.ai-response-area{background:rgba(0,0,0,.25);border-radius:10px;padding:1rem;min-height:60px;font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.08);white-space:pre-wrap;display:none;}
+.ai-response-area.show{display:block;}
+.ai-resp-actions{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;}
+.ai-resp-btn{padding:5px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.7);font-size:.7rem;font-family:inherit;cursor:pointer;transition:all .18s;}
+.ai-resp-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
+.ai-history-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin:.8rem 0 .3rem;}
+.ai-history-item{font-size:.72rem;color:rgba(255,255,255,.4);border-left:2px solid rgba(255,255,255,.1);padding-left:.6rem;margin-bottom:.3rem;cursor:pointer;transition:color .2s;}
+.ai-history-item:hover{color:rgba(255,255,255,.75);}
+.ai-thinking{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:rgba(255,255,255,.5);padding:.4rem 0;}
+.ai-dot{width:6px;height:6px;border-radius:50%;background:#4285f4;animation:aipulse 1.2s ease-in-out infinite;}
+.ai-dot:nth-child(2){animation-delay:.2s;background:#9b59f5;}
+.ai-dot:nth-child(3){animation-delay:.4s;background:#34a853;}
+@keyframes aipulse{0%,80%,100%{transform:scale(.8);opacity:.4;}40%{transform:scale(1.2);opacity:1;}}
 /* ══ EDITOR ══ */
 .editor-panel{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem;}
 .editor-panel h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem;color:var(--ink);}
@@ -392,6 +422,50 @@ footer{text-align:center;padding:1.5rem;font-size:.7rem;color:var(--muted);borde
 <!-- ════ COMPETENCIA ════ -->
 <div class="tab-panel" id="panel-competencia">
   <div class="main">
+
+    <!-- IA CONSULTORA DE COMPETENCIA -->
+    <div class="ai-consult-panel">
+      <div class="ai-consult-header">
+        <div class="ai-consult-icon">🤖</div>
+        <div>
+          <div class="ai-consult-title">Consultor IA · Análisis de Competencia</div>
+          <div class="ai-consult-sub">Gemini con búsqueda web — responde con datos reales de internet + tus datos registrados</div>
+        </div>
+      </div>
+
+      <!-- Chips de preguntas rápidas -->
+      <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:.4rem;">Preguntas rápidas</div>
+      <div class="ai-chips" id="aiChips">
+        <button class="ai-chip" onclick="setAIChip(this,'¿Qué destinos recomiendas para esta temporada de lluvias en Chiapas que mi competencia no esté cubriendo bien?')">🗺️ Destinos únicos para lluvias</button>
+        <button class="ai-chip" onclick="setAIChip(this,'Analiza mis precios vs la competencia registrada. ¿Estoy bien posicionado o hay oportunidades?')">💰 Análisis de precios</button>
+        <button class="ai-chip" onclick="setAIChip(this,'¿Qué destinos están de moda en México para grupos que salen desde Chiapas en los próximos 2 meses?')">🔥 Tendencias actuales</button>
+        <button class="ai-chip" onclick="setAIChip(this,'Propón 3 tours nuevos que ninguna agencia de mi competencia registrada esté ofreciendo actualmente')">💡 Ideas de tours nuevos</button>
+        <button class="ai-chip" onclick="setAIChip(this,'¿Cuál es la temporada alta en turismo en Chiapas y México en los próximos meses? ¿Qué tours debo priorizar?')">📅 Temporadas turísticas</button>
+        <button class="ai-chip" onclick="setAIChip(this,'¿Qué estrategia de precios y diferenciación recomiendas para competir con Hippies Travel y Pura Vida Chiapas?')">🏆 Estrategia vs competencia</button>
+      </div>
+
+      <!-- Input libre -->
+      <div class="ai-input-row">
+        <input class="ai-consult-input" id="aiConsultInput" placeholder="Escribe tu pregunta o usa una sugerencia arriba…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){askAIConsult();event.preventDefault();}">
+        <button class="ai-consult-btn" id="aiConsultBtn" onclick="askAIConsult()">✨ Preguntar</button>
+      </div>
+
+      <!-- Área de respuesta -->
+      <div class="ai-response-area" id="aiConsultResponse"></div>
+      <div class="ai-resp-actions" id="aiRespActions" style="display:none;">
+        <button class="ai-resp-btn" onclick="copyAIResponse()">📋 Copiar respuesta</button>
+        <button class="ai-resp-btn" onclick="clearAIResponse()">✕ Limpiar</button>
+        <button class="ai-resp-btn" onclick="followUpAI('Profundiza más en esto')">🔍 Profundizar</button>
+        <button class="ai-resp-btn" onclick="followUpAI('Dame ejemplos concretos de precios y destinos')">📊 Con ejemplos</button>
+      </div>
+
+      <!-- Historial de consultas -->
+      <div id="aiHistoryWrap" style="display:none;">
+        <div class="ai-history-label">Consultas anteriores (click para repetir)</div>
+        <div id="aiHistoryList"></div>
+      </div>
+    </div>
+
     <!-- Editor de agencias -->
     <div class="comp-editor">
       <h3>➕ Agregar / editar agencia</h3>
@@ -1898,6 +1972,150 @@ function exportCompCSV() {
   const csv=rows.map(r=>r.map(c=>'"'+String(c||'').replace(/"/g,'""')+'"').join(',')).join('\n');
   dl(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'competencia.csv');
   toast('📄 CSV exportado');
+}
+
+// ════════════════════════════════════════════════
+// AI CONSULTANT — COMPETENCIA
+// ════════════════════════════════════════════════
+let aiConsultHistory = [];
+let aiConsultContext = []; // multi-turn conversation
+
+function buildCompContextSummary(){
+  const totalAgencias = COMPETENCIA.length;
+  const toursComp = COMPETENCIA.reduce((s,a)=>(s+(a.tours||[]).length),0);
+  const viajesTours = VIAJES.map(v=>`${v.dest} ($${v.precio?.toLocaleString()}, ${v.mes}, ${v.alcance})`).join('; ');
+  const compResumen = COMPETENCIA.map(a=>{
+    const topTours = (a.tours||[]).slice(0,5).map(t=>`${t.n} ${t.p}`).join(', ');
+    return `${a.nombre} (${a.handle||''}): ${topTours}`;
+  }).join('\n');
+  return `DATOS DE NÓMADAS TOURS (tu agencia):
+Tours activos: ${VIAJES.length}
+${viajesTours}
+
+COMPETENCIA REGISTRADA (${totalAgencias} agencias, ${toursComp} tours):
+${compResumen}`;
+}
+
+function setAIChip(el, text){
+  document.querySelectorAll('.ai-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('aiConsultInput').value = text;
+  document.getElementById('aiConsultInput').focus();
+}
+
+async function askAIConsult(followUpText){
+  if(!GEMINI_KEY){ toast('⚠️ Primero guarda tu API key de Gemini en la pestaña Editor'); return; }
+  const input = document.getElementById('aiConsultInput');
+  const btn = document.getElementById('aiConsultBtn');
+  const responseArea = document.getElementById('aiConsultResponse');
+  const actions = document.getElementById('aiRespActions');
+
+  const question = followUpText || input.value.trim();
+  if(!question) return;
+
+  // Update UI
+  btn.disabled = true;
+  btn.textContent = '⏳ Consultando…';
+  responseArea.className = 'ai-response-area show';
+  responseArea.innerHTML = `<div class="ai-thinking"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div><span>Gemini está analizando tu competencia y buscando en internet…</span></div>`;
+  actions.style.display = 'none';
+
+  const contextSummary = buildCompContextSummary();
+  const systemPrompt = `Eres un consultor experto en turismo y agencias de viajes en México, especializado en el mercado de Chiapas, específicamente en grupos que salen desde Tuxtla Gutiérrez.
+
+Tienes acceso a los datos de la agencia Nómadas Tours y su competencia registrada. Responde en español, de forma clara, concisa y accionable. Usa emojis con moderación para que sea fácil de leer. Si la pregunta involucra tendencias de turismo, busca información actualizada de internet.
+
+${contextSummary}
+
+Fecha actual: ${new Date().toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'})}`;
+
+  // Build multi-turn messages
+  const messages = [];
+  // Add context as first user message if starting fresh
+  if(aiConsultContext.length === 0){
+    messages.push({ role:'user', content: systemPrompt + '\n\nPrimera consulta: ' + question });
+  } else {
+    // Include prior turns (last 6 turns max to avoid token overflow)
+    const recentCtx = aiConsultContext.slice(-6);
+    recentCtx.forEach(m => messages.push(m));
+    messages.push({ role:'user', content: question });
+  }
+
+  try {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_KEY}`;
+    const payload = {
+      contents: messages.map(m=>({role: m.role==='assistant'?'model':'user', parts:[{text:m.content}]})),
+      generationConfig:{maxOutputTokens:2000, temperature:0.6},
+      tools:[{googleSearch:{}}]
+    };
+    let res = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    // Retry without search if needed
+    if(!res.ok){
+      const errData = await res.json();
+      if(errData.error?.code===400){
+        delete payload.tools;
+        res = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      } else {
+        throw new Error(errData.error?.message||`Error ${res.status}`);
+      }
+    }
+    const data = await res.json();
+    const answer = data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'Sin respuesta';
+
+    // Save to multi-turn context
+    if(aiConsultContext.length === 0){
+      aiConsultContext.push({role:'user', content: systemPrompt + '\n\nPrimera consulta: ' + question});
+    } else {
+      aiConsultContext.push({role:'user', content: question});
+    }
+    aiConsultContext.push({role:'assistant', content: answer});
+
+    // Display
+    responseArea.textContent = answer;
+    actions.style.display = 'flex';
+
+    // Save to history
+    aiConsultHistory.unshift({q: question, a: answer, ts: new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})});
+    if(aiConsultHistory.length > 8) aiConsultHistory.pop();
+    renderAIHistory();
+
+    // Clear chip selection
+    document.querySelectorAll('.ai-chip').forEach(c=>c.classList.remove('active'));
+    if(!followUpText) input.value = '';
+
+  } catch(err){
+    responseArea.textContent = '⚠️ Error: ' + err.message;
+    actions.style.display = 'none';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✨ Preguntar';
+  }
+}
+
+function followUpAI(text){
+  askAIConsult(text);
+}
+
+function copyAIResponse(){
+  const text = document.getElementById('aiConsultResponse').textContent;
+  navigator.clipboard.writeText(text).then(()=>toast('📋 Respuesta copiada')).catch(()=>toast('⚠️ No se pudo copiar'));
+}
+
+function clearAIResponse(){
+  document.getElementById('aiConsultResponse').className = 'ai-response-area';
+  document.getElementById('aiRespActions').style.display = 'none';
+  aiConsultContext = [];
+}
+
+function renderAIHistory(){
+  const wrap = document.getElementById('aiHistoryWrap');
+  const list = document.getElementById('aiHistoryList');
+  if(!aiConsultHistory.length){ wrap.style.display='none'; return; }
+  wrap.style.display = 'block';
+  list.innerHTML = aiConsultHistory.slice(0,5).map(h=>`
+    <div class="ai-history-item" onclick="setAIChip(this,'${h.q.replace(/'/g,"\\'")}')">
+      <span style="color:rgba(255,255,255,.25);">${h.ts}</span> ${h.q.length>80?h.q.slice(0,80)+'…':h.q}
+    </div>`).join('');
 }
 
 // Init
