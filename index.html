@@ -232,6 +232,7 @@ footer{text-align:center;padding:1.5rem;font-size:.7rem;color:var(--muted);borde
   <button class="tab" onclick="switchTab('biblioteca',this)">📚 Biblioteca</button>
   <button class="tab" onclick="switchTab('editor',this)">✏️ Agregar / Editar</button>
   <button class="tab" onclick="switchTab('competencia',this)">🏆 Competencia</button>
+  <button class="tab" onclick="switchTab('config',this)">⚙️ Configuración</button>
 </div>
 
 <!-- ════ CATÁLOGO ════ -->
@@ -328,6 +329,20 @@ footer{text-align:center;padding:1.5rem;font-size:.7rem;color:var(--muted);borde
       <button class="cbtn" onclick="bibFilter('internacional',this)">✈️ Internacional</button>
       <span class="bib-count" id="bibCount"></span>
     </div>
+    <!-- Carga masiva CSV -->
+    <div style="background:var(--sage-l);border:1px solid #bcd3c4;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0 1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:220px;">
+        <div style="font-size:.8rem;font-weight:600;color:var(--sage);margin-bottom:.2rem;">📥 Carga masiva por CSV</div>
+        <div style="font-size:.7rem;color:var(--muted);">Descarga la plantilla, llénala en Excel (una fila por viaje) y súbela. Si un destino ya existe en la biblioteca, se actualiza; los nuevos se agregan. Nada se borra.</div>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn-sm sec" onclick="downloadBibTemplate()" style="font-size:.72rem;">⬇️ Plantilla CSV</button>
+        <button class="btn-sm" style="background:var(--sage);color:#fff;font-size:.72rem;" onclick="document.getElementById('bibCSVFile').click()">📂 Importar CSV</button>
+        <button class="btn-sm sec" onclick="exportBibCSV()" style="font-size:.72rem;">📄 Exportar biblioteca a CSV</button>
+        <input type="file" id="bibCSVFile" accept=".csv,text/csv" style="display:none" onchange="importBibCSV(this)">
+      </div>
+    </div>
+    <div id="bibImportReport"></div>
     <div class="biblioteca-grid" id="bibliotecaGrid"></div>
   </div>
 </div>
@@ -510,6 +525,47 @@ footer{text-align:center;padding:1.5rem;font-size:.7rem;color:var(--muted);borde
       </div>
     </div>
     <div class="comp-grid" id="compGrid"></div>
+  </div>
+</div>
+
+<!-- ════ CONFIGURACIÓN ════ -->
+<div class="tab-panel" id="panel-config">
+  <div class="main">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;margin-bottom:.2rem;">⚙️ Configuración del negocio</h2>
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:1.2rem;">Estos datos se usan automáticamente al copiar la info completa de un viaje (botón "📋 Copiar toda la info") y se incluyen en el respaldo .json.</p>
+
+    <div class="editor-panel" style="margin-bottom:1rem;">
+      <h3 style="font-size:1rem;">📱 Contacto y redes sociales</h3>
+      <div class="form-grid" style="margin-top:.8rem;">
+        <div class="form-group"><label>WhatsApp (con lada)</label><input id="cfgWhatsapp" placeholder="Ej: 961 123 4567"></div>
+        <div class="form-group"><label>Instagram</label><input id="cfgInstagram" placeholder="@nomadastours"></div>
+        <div class="form-group"><label>Facebook</label><input id="cfgFacebook" placeholder="Nómadas Tours Chiapas"></div>
+        <div class="form-group"><label>TikTok</label><input id="cfgTiktok" placeholder="@nomadastours"></div>
+        <div class="form-group form-full"><label>Sitio web (opcional)</label><input id="cfgWeb" placeholder="https://…"></div>
+      </div>
+    </div>
+
+    <div class="editor-panel" style="margin-bottom:1rem;">
+      <h3 style="font-size:1rem;">🏦 Datos bancarios para transferencias</h3>
+      <div class="form-grid" style="margin-top:.8rem;">
+        <div class="form-group"><label>Banco</label><input id="cfgBanco" placeholder="Ej: BBVA"></div>
+        <div class="form-group"><label>Titular de la cuenta</label><input id="cfgTitular" placeholder="Nombre completo del titular"></div>
+        <div class="form-group"><label>Número de cuenta / tarjeta</label><input id="cfgCuenta" placeholder="0000 0000 0000 0000"></div>
+        <div class="form-group"><label>CLABE interbancaria</label><input id="cfgClabe" placeholder="18 dígitos"></div>
+      </div>
+      <label style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;margin-top:.8rem;cursor:pointer;">
+        <input type="checkbox" id="cfgIncluirPago" checked style="width:16px;height:16px;accent-color:var(--sage);cursor:pointer;">
+        Incluir los datos bancarios al copiar la info completa de un viaje
+      </label>
+      <div style="font-size:.68rem;color:var(--muted);margin-top:.3rem;">💡 Estos datos se guardan solo en este navegador (localStorage), no se suben a ningún servidor.</div>
+    </div>
+
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
+      <button class="btn-add" onclick="saveConfig()">💾 Guardar configuración</button>
+      <button class="btn-secondary" onclick="copyDatosBancarios()">📋 Copiar datos bancarios</button>
+      <button class="btn-secondary" onclick="copyDatosContacto()">📋 Copiar contacto y redes</button>
+      <span id="cfgStatus" style="font-size:.75rem;color:var(--sage);"></span>
+    </div>
   </div>
 </div>
 
@@ -855,6 +911,7 @@ function buildCard(v){
   </div>
   <div class="card-meta"><span>📅 ${esc(v.fechas||'')}</span><span>⏱️ ${esc(v.duracion||'')}</span></div>
   <div class="card-tags"><span class="tag ${alcColor}">${alcLabel}</span>${v.alcance==='local'?'<span class="tag t-eco">🌱 Eco</span>':''}</div>
+  <button class="btn-share-full" style="background:#1faa53;" onclick="reservarWhatsApp(${v.id})">📲 Reservar por WhatsApp</button>
   <button class="btn-share-full" onclick="shareFullInfo(${v.id})">📋 Copiar toda la info — listo para WhatsApp/IG</button>
   <div style="display:flex;gap:.4rem;padding:.4rem 1.1rem;border-top:1px solid var(--border);">
     <button class="btn-share-full" style="flex:1;background:var(--sage);" onclick="shareFullInfo(${v.id})">📋 Copiar info completa</button>
@@ -883,6 +940,7 @@ function buildCard(v){
   <div class="card-foot"><span class="cf-comp">Nómadas Tours 2026</span><span class="cf-trend ${v.trendC||'tr-up'}">${v.trend||''}</span></div>
   <div class="card-edit-btns">
     <button class="edit-btn edit" onclick="editViaje(${v.id})">✏️ Editar</button>
+    <button class="edit-btn edit" onclick="duplicateViaje(${v.id})" style="color:var(--ocean);border-color:#b5ccdf;">📋 Duplicar</button>
     <button class="edit-btn del" onclick="deleteViaje(${v.id})">🗑️ Quitar</button>
   </div>
 </div>`;
@@ -939,6 +997,7 @@ function renderEditorList(){
       </div>
       <div style="display:flex;gap:.4rem;">
         <button class="edit-btn edit" onclick="editViaje(${v.id})">✏️ Editar</button>
+        <button class="edit-btn edit" onclick="duplicateViaje(${v.id})" style="color:var(--ocean);border-color:#b5ccdf;">📋 Duplicar</button>
         <button class="edit-btn del" onclick="deleteViaje(${v.id})">🗑️ Quitar</button>
       </div>
     </div>`).join('');
@@ -1238,12 +1297,26 @@ function shareFullInfo(id){
     ``,
     `📲 RESERVAS Y MÁS INFO`,
     '───────────────────────────────',
-    `  WhatsApp: [tu número]`,
-    `  Instagram: @nomadastours`,
+    `  WhatsApp: ${CONFIG.whatsapp || '[configura tu número en ⚙️ Configuración]'}`,
+    waNumber() ? `  👉 Reserva directo: https://wa.me/${waNumber()}` : null,
+    `  Instagram: ${CONFIG.instagram || '@nomadastours'}`,
+    CONFIG.facebook ? `  Facebook: ${CONFIG.facebook}` : null,
+    CONFIG.tiktok ? `  TikTok: ${CONFIG.tiktok}` : null,
+    CONFIG.web ? `  Web: ${CONFIG.web}` : null,
+    ...(CONFIG.incluirPagoEnCopy && (CONFIG.banco || CONFIG.cuenta || CONFIG.clabe) ? [
+      ``,
+      `💳 APARTA CON TRANSFERENCIA`,
+      '───────────────────────────────',
+      CONFIG.banco ? `  Banco: ${CONFIG.banco}` : null,
+      CONFIG.titular ? `  Titular: ${CONFIG.titular}` : null,
+      CONFIG.cuenta ? `  Cuenta: ${CONFIG.cuenta}` : null,
+      CONFIG.clabe ? `  CLABE: ${CONFIG.clabe}` : null,
+      `  Envía tu comprobante por WhatsApp`,
+    ] : []),
     ``,
     `  Cupo limitado · Aparta con anticipo`,
     '═══════════════════════════════',
-  ].filter(l=>l!==undefined).join('\n');
+  ].filter(l=>l!==undefined&&l!==null).join('\n');
   navigator.clipboard.writeText(text).then(()=>toast('📋 Info completa copiada — lista para WhatsApp o Instagram'));
 }
 
@@ -1818,14 +1891,16 @@ function updatePersistStatus() {
   const savedAt = localStorage.getItem('nomadas_saved_at');
   const el = document.getElementById('persistStatus');
   if (!el) return;
-  el.innerHTML = savedAt
+  el.innerHTML = (savedAt
     ? '<span style="color:#4ade80">✅ Guardado ' + savedAt + '</span> · ' + VIAJES.length + ' viajes · ' + BIBLIOTECA.length + ' biblioteca · ' + COMPETENCIA.length + ' agencias'
-    : '⚠️ Sin guardar';
+    : '⚠️ Sin guardar') + backupReminderHTML();
 }
 
 function exportSession() {
-  const data = { viajes: VIAJES, competencia: COMPETENCIA, biblioteca: BIBLIOTECA, exportedAt: new Date().toISOString() };
+  const data = { viajes: VIAJES, competencia: COMPETENCIA, biblioteca: BIBLIOTECA, config: CONFIG, exportedAt: new Date().toISOString() };
   dl(new Blob([JSON.stringify(data, null, 2)], {type:'application/json'}), 'nomadas_backup_' + new Date().toISOString().slice(0,10) + '.json');
+  localStorage.setItem('nomadas_last_export', String(Date.now()));
+  updatePersistStatus();
   toast('📥 Sesión exportada');
 }
 
@@ -1841,6 +1916,7 @@ function importSession(input) {
       VIAJES.length=0; viajes.forEach(v=>VIAJES.push(v));
       if (data.competencia) { COMPETENCIA.length=0; data.competencia.forEach(c=>COMPETENCIA.push(c)); }
       if (data.biblioteca) { BIBLIOTECA.length=0; data.biblioteca.forEach(b=>BIBLIOTECA.push(b)); }
+      if (data.config) { CONFIG = { ...CONFIG, ...data.config }; persistConfig(); fillConfigForm(); }
       saveToStorage(); saveBiblioteca();
       renderCatalogo(); renderComp(); renderCompAgencySelect(); renderBiblioteca(); updateBibSelectDrop(); updatePersistStatus();
       toast('✅ Importado: ' + viajes.length + ' viajes');
@@ -2118,7 +2194,309 @@ function renderAIHistory(){
     </div>`).join('');
 }
 
+// ════════════════════════════════════════════════════════════
+// MEJORA 1 — RESERVAR POR WHATSAPP (usa CONFIG.whatsapp)
+// ════════════════════════════════════════════════════════════
+function waNumber() {
+  const d = String(CONFIG.whatsapp || '').replace(/[^0-9]/g, '');
+  if (!d) return '';
+  if (d.length === 10) return '52' + d;          // número mexicano sin lada de país
+  if (d.length === 12 && d.startsWith('52')) return d;
+  if (d.length === 13 && d.startsWith('521')) return d;
+  return d;
+}
+
+function reservarWhatsApp(id) {
+  const v = VIAJES.find(x => x.id === id);
+  if (!v) return;
+  const num = waNumber();
+  if (!num) {
+    toast('⚠️ Primero configura tu WhatsApp en ⚙️ Configuración');
+    switchTab('config', document.querySelectorAll('.tab')[4]);
+    return;
+  }
+  const msg = 'Hola Nómadas Tours 👋 Me interesa el tour a *' + v.dest + '*' +
+    (v.fechas ? ' (' + v.fechas + ')' : '') +
+    ' — $' + v.precio.toLocaleString() + ' por persona. ¿Sigue disponible?';
+  window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ════════════════════════════════════════════════════════════
+// MEJORA 2 — DUPLICAR VIAJE A OTRO MES
+// ════════════════════════════════════════════════════════════
+function duplicateViaje(id) {
+  const v = VIAJES.find(x => x.id === id);
+  if (!v) return;
+  switchTab('editor', document.querySelectorAll('.tab')[2]);
+  document.getElementById('editId').value = '';
+  document.getElementById('bibSaveMode').value = 'calendario';
+  fillFormFromViaje(v);
+  document.getElementById('fFechas').value = '';
+  document.getElementById('editorTitle').textContent = '📋 Duplicando: ' + v.dest + ' — elige mes y fechas';
+  updateEditorModeUI();
+  document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth' });
+  toast('📋 Copia lista — cambia el mes y las fechas, luego guarda');
+}
+
+// ════════════════════════════════════════════════════════════
+// MEJORA 3 — AVISO AL SALIR CON CAMBIOS SIN GUARDAR
+// ════════════════════════════════════════════════════════════
+let INITIAL_VIAJES_SNAPSHOT = '';
+
+window.addEventListener('beforeunload', function(e) {
+  let unsaved = false;
+  try {
+    const sv = localStorage.getItem(STORAGE_KEY);
+    const sb = localStorage.getItem(STORAGE_BIB);
+    const sc = localStorage.getItem(STORAGE_COMP);
+    if (sv !== null && sv !== '[]' && sv !== JSON.stringify(VIAJES)) unsaved = true;
+    if (sb !== null && sb !== JSON.stringify(BIBLIOTECA)) unsaved = true;
+    if (sc !== null && sc !== '[]' && sc !== JSON.stringify(COMPETENCIA)) unsaved = true;
+    // Nunca se ha guardado: comparar contra el estado con el que abrió la página
+    if (sv === null && INITIAL_VIAJES_SNAPSHOT && INITIAL_VIAJES_SNAPSHOT !== JSON.stringify(VIAJES)) unsaved = true;
+    if (sb === null && BIBLIOTECA.length) unsaved = true;
+  } catch(_) {}
+  if (unsaved) { e.preventDefault(); e.returnValue = ''; }
+});
+
+// ════════════════════════════════════════════════════════════
+// MEJORA 4 — RECORDATORIO DE RESPALDO .JSON
+// ════════════════════════════════════════════════════════════
+function backupReminderHTML() {
+  const hasData = VIAJES.length || BIBLIOTECA.length;
+  if (!hasData) return '';
+  const last = parseInt(localStorage.getItem('nomadas_last_export') || '0');
+  if (!last) return ' · <span style="color:#fbbf24">⚠️ Nunca has exportado un respaldo .json — hazlo hoy</span>';
+  const days = Math.floor((Date.now() - last) / 86400000);
+  if (days >= 7) return ' · <span style="color:#fbbf24">⚠️ Último respaldo hace ' + days + ' días — exporta .json</span>';
+  return '';
+}
+
+// ════════════════════════════════════════════════════════════
+// CONFIGURACIÓN DEL NEGOCIO — contacto, redes, datos bancarios
+// ════════════════════════════════════════════════════════════
+const STORAGE_CFG = 'nomadas_config_v1';
+let CONFIG = { whatsapp:'', instagram:'@nomadastours', facebook:'', tiktok:'', web:'', banco:'', titular:'', cuenta:'', clabe:'', incluirPagoEnCopy:true };
+
+function loadConfig() {
+  try {
+    const saved = localStorage.getItem(STORAGE_CFG);
+    if (saved) CONFIG = { ...CONFIG, ...JSON.parse(saved) };
+  } catch(e) { console.error('loadConfig:', e); }
+}
+
+function persistConfig() {
+  try { localStorage.setItem(STORAGE_CFG, JSON.stringify(CONFIG)); } catch(e) { console.error('persistConfig:', e); }
+}
+
+function fillConfigForm() {
+  const map = { cfgWhatsapp:'whatsapp', cfgInstagram:'instagram', cfgFacebook:'facebook', cfgTiktok:'tiktok', cfgWeb:'web', cfgBanco:'banco', cfgTitular:'titular', cfgCuenta:'cuenta', cfgClabe:'clabe' };
+  for (const [id, key] of Object.entries(map)) {
+    const el = document.getElementById(id);
+    if (el) el.value = CONFIG[key] || '';
+  }
+  const chk = document.getElementById('cfgIncluirPago');
+  if (chk) chk.checked = CONFIG.incluirPagoEnCopy !== false;
+}
+
+function saveConfig() {
+  const map = { cfgWhatsapp:'whatsapp', cfgInstagram:'instagram', cfgFacebook:'facebook', cfgTiktok:'tiktok', cfgWeb:'web', cfgBanco:'banco', cfgTitular:'titular', cfgCuenta:'cuenta', cfgClabe:'clabe' };
+  for (const [id, key] of Object.entries(map)) {
+    const el = document.getElementById(id);
+    if (el) CONFIG[key] = el.value.trim();
+  }
+  const chk = document.getElementById('cfgIncluirPago');
+  CONFIG.incluirPagoEnCopy = chk ? chk.checked : true;
+  persistConfig();
+  const st = document.getElementById('cfgStatus');
+  if (st) { st.textContent = '✅ Configuración guardada'; setTimeout(()=>st.textContent='', 2500); }
+  toast('⚙️ Configuración guardada');
+}
+
+function copyDatosBancarios() {
+  if (!CONFIG.banco && !CONFIG.cuenta && !CONFIG.clabe) { toast('⚠️ Primero llena y guarda los datos bancarios'); return; }
+  const lines = [
+    '💳 DATOS PARA TRANSFERENCIA — Nómadas Tours',
+    CONFIG.banco   ? 'Banco: ' + CONFIG.banco : null,
+    CONFIG.titular ? 'Titular: ' + CONFIG.titular : null,
+    CONFIG.cuenta  ? 'Cuenta / Tarjeta: ' + CONFIG.cuenta : null,
+    CONFIG.clabe   ? 'CLABE: ' + CONFIG.clabe : null,
+    '',
+    '📲 Al transferir, envía tu comprobante por WhatsApp' + (CONFIG.whatsapp ? ': ' + CONFIG.whatsapp : ''),
+  ].filter(l => l !== null).join('\n');
+  navigator.clipboard.writeText(lines).then(()=>toast('📋 Datos bancarios copiados — listos para WhatsApp'));
+}
+
+function copyDatosContacto() {
+  const lines = [
+    '✈️ NÓMADAS TOURS — Contacto',
+    CONFIG.whatsapp  ? '📲 WhatsApp: ' + CONFIG.whatsapp : null,
+    CONFIG.instagram ? '📸 Instagram: ' + CONFIG.instagram : null,
+    CONFIG.facebook  ? '👍 Facebook: ' + CONFIG.facebook : null,
+    CONFIG.tiktok    ? '🎵 TikTok: ' + CONFIG.tiktok : null,
+    CONFIG.web       ? '🌐 Web: ' + CONFIG.web : null,
+  ].filter(l => l !== null).join('\n');
+  if (lines.split('\n').length <= 1) { toast('⚠️ Primero llena y guarda tus datos de contacto'); return; }
+  navigator.clipboard.writeText(lines).then(()=>toast('📋 Contacto copiado'));
+}
+
+// ════════════════════════════════════════════════════════════
+// BIBLIOTECA — PLANTILLA CSV + IMPORTACIÓN MASIVA
+// ════════════════════════════════════════════════════════════
+const BIB_CSV_HEADERS = ['Destino','Alcance','Mes','Fechas','Duracion','Precio','PrecioCompetencia','Tendencia','Incluye','NoIncluye','Recomendaciones','Itinerario','CopyInstagram'];
+
+function csvCell(c){ return '"' + String(c == null ? '' : c).replace(/"/g,'""') + '"'; }
+
+function downloadBibTemplate() {
+  const rows = [
+    BIB_CSV_HEADERS,
+    ['EJEMPLO (borra esta fila) — Cascadas El Chiflón','chiapas','junio','Sábados de junio','1 día','990','1200','🔥 Alta demanda',
+     'Transporte A/C | Guía certificado | Seguro de viajero','Alimentación | Entradas ($50) | Propinas',
+     'Llevar traje de baño | Zapatos con agarre | Efectivo para comida',
+     '6:00 am — Salida desde Tuxtla | 9:00 am — Llegada a las cascadas | 1:00 pm — Comida libre | 4:00 pm — Retorno | 7:00 pm — Llegada a Tuxtla',
+     '💦 Agua turquesa que parece de otro planeta…'],
+    ['EJEMPLO (borra esta fila) — Holbox','nacional','julio','15-18 julio','4 días / 3 noches','5490','6200','✨ Nuevo',
+     'Transporte | Hospedaje 3 noches | Ferry redondo','Alimentación | Tours opcionales',
+     'Llevar repelente biodegradable | Efectivo (pocos cajeros en la isla)',
+     '10:00 pm — Salida nocturna desde Tuxtla | 12:00 pm — Llegada a Chiquilá y ferry | 2:00 pm — Check-in y tarde libre',
+     '🏝️ Calles de arena, agua cristalina y cero prisa…'],
+  ];
+  const csv = rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+  dl(new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8'}), 'plantilla_biblioteca_nomadas.csv');
+  toast('⬇️ Plantilla CSV descargada — Alcance: chiapas / nacional / internacional · Listas separadas con |');
+}
+
+function exportBibCSV() {
+  if (!BIBLIOTECA.length) { toast('⚠️ La biblioteca está vacía'); return; }
+  const rows = [BIB_CSV_HEADERS];
+  BIBLIOTECA.forEach(v => rows.push([
+    v.dest, v.alcance || '', v.mes || '', v.fechas || '', v.duracion || '', v.precio || '', v.comp || '', v.trend || '',
+    (v.incluye||[]).join(' | '), (v.noIncluye||[]).join(' | '), (v.recs||[]).join(' | '),
+    (v.itinerario||[]).map(r => r.t ? r.t + ' — ' + r.x : r.x).join(' | '),
+    v.ig || ''
+  ]));
+  const csv = rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+  dl(new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8'}), 'biblioteca_nomadas_' + new Date().toISOString().slice(0,10) + '.csv');
+  toast('📄 Biblioteca exportada (' + BIBLIOTECA.length + ' viajes) — este archivo también sirve para re-importar');
+}
+
+// Parser CSV que respeta comillas, comas y saltos de línea dentro de celdas (RFC 4180)
+function parseCSV(text) {
+  const rows = []; let row = [], field = '', inQ = false;
+  text = text.replace(/^\uFEFF/, '');
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else inQ = false; }
+      else field += c;
+    } else {
+      if (c === '"') inQ = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i+1] === '\n') i++;
+        row.push(field); field = '';
+        if (row.some(f => f.trim() !== '')) rows.push(row);
+        row = [];
+      }
+      else field += c;
+    }
+  }
+  if (field !== '' || row.length) { row.push(field); if (row.some(f => f.trim() !== '')) rows.push(row); }
+  return rows;
+}
+
+function normHeader(h) {
+  return String(h||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
+}
+
+function normAlcance(a) {
+  const s = String(a||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  if (['local','chiapas'].includes(s)) return 'local';
+  if (['nacional','mexico','mx'].includes(s)) return 'nacional';
+  if (['internacional','inter','int'].includes(s)) return 'internacional';
+  return 'local';
+}
+
+function splitList(s) { return String(s||'').split('|').map(x => x.trim()).filter(Boolean); }
+
+function importBibCSV(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const rows = parseCSV(e.target.result);
+      if (rows.length < 2) throw new Error('El archivo no tiene filas de datos');
+
+      // Mapear columnas por nombre de encabezado (tolerante a acentos/mayúsculas)
+      const headerAliases = {
+        destino:'dest', alcance:'alcance', mes:'mes', fechas:'fechas', duracion:'duracion',
+        precio:'precio', preciocompetencia:'comp', competencia:'comp', comp:'comp',
+        tendencia:'trend', trend:'trend', incluye:'incluye', noincluye:'noIncluye',
+        recomendaciones:'recs', recs:'recs', itinerario:'itinerario',
+        copyinstagram:'ig', copyig:'ig', ig:'ig', instagram:'ig'
+      };
+      const colMap = {};
+      rows[0].forEach((h, i) => { const key = headerAliases[normHeader(h)]; if (key && !(key in colMap)) colMap[key] = i; });
+      if (!('dest' in colMap)) throw new Error('No se encontró la columna "Destino". Usa la plantilla como base.');
+
+      const get = (r, key) => (key in colMap) ? String(r[colMap[key]] ?? '').trim() : '';
+      let added = 0, updated = 0, skipped = 0;
+      const errors = [];
+
+      rows.slice(1).forEach((r, idx) => {
+        const dest = get(r, 'dest');
+        if (!dest || dest.toUpperCase().startsWith('EJEMPLO')) { skipped++; return; }
+        const precio = parseInt(String(get(r, 'precio')).replace(/[^0-9]/g,'')) || 0;
+        if (!precio) { skipped++; errors.push('Fila ' + (idx+2) + ' ("' + dest + '"): precio inválido u omitido'); return; }
+
+        const data = {
+          dest,
+          alcance: normAlcance(get(r, 'alcance')),
+          mes: get(r, 'mes').toLowerCase() || 'mayo',
+          fechas: get(r, 'fechas'),
+          duracion: get(r, 'duracion'),
+          precio,
+          comp: parseInt(String(get(r, 'comp')).replace(/[^0-9]/g,'')) || 0,
+          trend: get(r, 'trend') || '✅ Nuevo',
+          trendC: 'tr-up',
+          ig: get(r, 'ig'),
+          incluye: splitList(get(r, 'incluye')),
+          noIncluye: splitList(get(r, 'noIncluye')),
+          recs: splitList(get(r, 'recs')),
+          itinerario: splitList(get(r, 'itinerario')).map(l => {
+            const p = l.indexOf('—');
+            return p > -1 ? { t: l.slice(0, p).trim(), x: l.slice(p+1).trim() } : { t: '', x: l };
+          }),
+        };
+
+        const existIdx = BIBLIOTECA.findIndex(v => v.dest.toLowerCase() === dest.toLowerCase());
+        if (existIdx >= 0) { BIBLIOTECA[existIdx] = { ...BIBLIOTECA[existIdx], ...data }; updated++; }
+        else { BIBLIOTECA.push({ id: Date.now() + Math.random(), ...data }); added++; }
+      });
+
+      saveBiblioteca();
+      renderBiblioteca();
+      updateBibSelectDrop();
+      updatePersistStatus();
+
+      const report = document.getElementById('bibImportReport');
+      if (report) {
+        report.innerHTML = '<div style="background:' + (errors.length ? 'var(--gold-l)' : 'var(--sage-l)') + ';border:1px solid var(--border);border-radius:10px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.76rem;line-height:1.6;">' +
+          '<strong>📥 Resultado de la importación:</strong> ' + added + ' nuevos · ' + updated + ' actualizados · ' + skipped + ' omitidos' +
+          (errors.length ? '<br>' + errors.map(esc).join('<br>') : '') +
+          ' <button onclick="this.parentElement.remove()" style="float:right;border:none;background:transparent;cursor:pointer;font-size:.9rem;">✕</button></div>';
+      }
+      toast('✅ CSV importado: ' + added + ' nuevos, ' + updated + ' actualizados');
+    } catch(err) {
+      alert('❌ Error al importar CSV: ' + err.message);
+    }
+    input.value = '';
+  };
+  reader.readAsText(file, 'utf-8');
+}
+
 // Init
+loadConfig();
 loadFromStorage();
 renderCatalogo();
 renderComp();
@@ -2133,6 +2511,10 @@ updatePersistStatus();
   if(el && GEMINI_KEY) el.value = GEMINI_KEY;
   // Set default save mode
   updateEditorModeUI();
+  // Fill config form with saved values
+  fillConfigForm();
+  // Snapshot para detectar cambios sin guardar (mejora 3)
+  INITIAL_VIAJES_SNAPSHOT = JSON.stringify(VIAJES);
 })();
 // Auto-save every 90 seconds
 setInterval(function(){ saveToStorage(); saveBiblioteca(); }, 90000);
